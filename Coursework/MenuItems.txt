@@ -1,0 +1,59 @@
+Large Americano/COFEE001/3.0/Espresso shots topped with hot water to produce a light layer of crema./None
+Regular Americano/COFEE002/2.75/Espresso shots topped with hot water to produce a light layer of crema./None
+Large Cappuccino/COFEE003/3.5/Dark, rich espresso combined with steamed milk, topped with a deep layer of foam./Milk
+Regular Cappuccino/COFEE004/3.25/Dark, rich espresso combined with steamed milk, topped with a deep layer of foam./Milk
+Flat White/COFEE005/3.5/Expertly steamed milk poured over two shots of espresso and finished with delicate Rosetta art./Milk
+Double Espresso/COFEE006/2.5/A shot of espresso with a rich flavour and caramel-like sweetness./None
+Espresso/COFEE007/2.25/A shot of espresso with a rich flavour and caramel-like sweetness./None
+Large Mocha/COFEE008/3.75/Espresso combined with mocha syrup and steamed milk, topped with whipped cream./Milk
+Regular Mocha/COFEE009/3.5/Espresso combined with mocha syrup and steamed milk, topped with whipped cream./Milk
+Regular Latte/COFEE010/3.5/Dark, rich espresso is balanced with steamed milk and topped with a light layer of foam./Milk
+Large Hazelnut Latte/COFEE011/3.75/Dark, rich espresso is balanced with steamed milk and topped with a light layer of foam with hazelnut syrup./Milk,nuts
+Regular Hazelnut Latte/COFEE012/3.5/Dark, rich espresso is balanced with steamed milk and topped with a light layer of foam with hazelnut syrup./Milk,nuts
+Large Caramel Latte/COFEE013/3.75/Dark, rich espresso is balanced with steamed milk and topped with a light layer of foam with caramel syrup./Milk
+Regular Caramel Latte/COFEE014/3.5/Dark, rich espresso is balanced with steamed milk and topped with a light layer of foam with caramel syrup./Milk
+Large Chia Latte/COFEE015/4.0/Dark, rich espresso mixed with chia is balanced with steamed milk and topped with a light layer of foam./Milk
+Regular Chia Latte/COFEE016/3.75/Dark, rich espresso mixed with chia is balanced with steamed milk and topped with a light layer of foam./Milk
+Large Hot Chocolate/DRINK017/4.0/Steamed milk with mocha-flavoured syrup. Topped with whipped cream./Milk
+Regular Hot Chocolate/DRINK018/3.75/Steamed milk with mocha-flavoured syrup. Topped with whipped cream./Milk
+Breakfast Tea/DRINK019/2.5/Full-bodied black tea with rich, malty undertones./None
+Green Tea/DRINK020/2.5/Green tea with a fragrant jasmine bouquet./None
+Earl Grey Tea/DRINK021/2.5/A bright blend of black tea, fragrant bergamot and soft lavender./None
+Lemon Green Tea/DRINK022/2.5/Sweet lemon infusion with a subtle floral finish blended with green tea./None
+Diet Coke/DRINK023/1.5/500ml bottle of Diet Coke./None
+Coke/DRINK024/1.5/500ml bottle of coke./None
+San Pellegrino Lemon /DRINK025/2.5/Lemon flavoured fizzy water./None
+San Pellegrino Orange/DRINK026/2.5/Orange flavoured fizzy water./None
+Banana Pancakes/MEALS001/6.0/Soft and fluffy American style pancakes with banana slices, dusted with sugar./Milk
+Nutella Pancakes/MEALS002/6.5/Soft and fluffy American style pancakes with Nutella./Milk,nuts
+Banana and Nutella Pancakes/MEALS003/7.0/Soft and fluffy American style pancakes with banana slices and Nutella./Milk,Nuts
+Maple Syrup Pancakes/MEALS004/6.5/Soft and fluffy American style pancakes with maple syrup./Milk
+French Toast/MEALS005/6.0/Thick and fluffy French toast dusted with sugar./Milk
+Cinnamon Rasion Bagel/MEALS006/3.0/New York Style cinnamon raison bagel with butter./Milk
+Plain Bagel/MEALS007/3.0/New York Style bagel with butter./Milk
+Eggs Benedict/MEALS008/8.0/Poached eggs withs smoked salmon and hollaindaise sauce./Milk,Eggs
+Eggs Florentine/MEALS009/7.5/Poached eggs withs smoked salmon and hollaindaise sauce./Milk,Eggs
+Avocado Toast/MEALS010/7.0/Soft avocado mashed onto of wholegrain toast./None
+Avocado and Bacon Toast/MEALS011/8.0/Soft avocado mashed onto of wholegrain toast with crispy bacon./None
+Granola and Yogurt/MEALS012/5.5/Crunchy granola with creamy yogurt./Milk,Nuts
+Poached eggs /MEALS013/3.0/Soft poached eggs./Eggs
+Wholegrain Toast/MEALS014/2.0/Crunchy toast./None
+Bacon/MEALS015/3.0/Crispy bacon./None
+Smoked Salmon/MEALS016/4.0/Scottish smoked salmon./None
+Pesto and Chicken Panini/MEALS017/5.5/Creamy pesto and chicken toasted panini./None
+Salmon and Cream Cheese Bagel/MEALS018/6.5/Smoked Salmon and cream cheese on a soft bagel./Milk
+Tomato Soup/MEALS019/4.0/Creamy tomato soup./None
+Four Cheese Toast/MEALS020/5.0/Creamy four cheese toast./Milk
+Avocado and Chicken Salad/MEALS021/8.5/Avocado and chicken on a bed of leaves./None
+Greek Salad/MEALS022/7.5/Tomato, feta and olive salad./Milk
+Chocolate Muffin/SNACK001/2.5/Chocolate Muffin/Milk
+Lemon Muffin/SNACK002/2.5/Lemon Muffin/Milk
+Plain Doughnut/SNACK004/2.5/Doughnut/Milk
+Millionaires Shortbread/SNACK005/3.0/Shortbread/Milk
+Shortbread/SNACK006/2.5/Shortbread/Milk
+Oatmeal Cookie/SNACK007/2.5/cookie/Milk
+Chocolate Chip Cookie/SNACK008/2.5/Cookie/Milk
+Double Chocolate Chip Cookie/SNACK009/2.5/Cookie/Milk
+White Chocolate Cookie/SNACK010/2.5/Cookie/Milk
+Lemon Drizzle Cake/SNACK011/3.0/Cake/Milk
+Carrot Cake/SNACK012/3.0/Cake/Milk
