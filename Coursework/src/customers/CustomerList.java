@@ -14,8 +14,7 @@ public class CustomerList {
 	private Hashtable<Integer, Customer> customerList;
 	
 	
-	private static CustomerList customers = new CustomerList();
-
+	private static CustomerList customers;
 
 	/**
 	 * Constructor for creating a hash table for customer list

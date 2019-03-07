@@ -16,7 +16,7 @@ public class StaffList {
 	private Hashtable<Integer, Staff> staffList;
 	
 	// for Singleton
-	private static StaffList staff = new StaffList();
+	private static StaffList staff;
 	
 	private StaffList() {
 		staffList = new Hashtable<Integer, Staff> ();		

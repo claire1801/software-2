@@ -16,8 +16,8 @@ import exceptions.InvalidItemIdentifierException;
 import menu.MenuList;
 
 import orders.OrderList;
-import shop.Basket;
-import staff.StaffList;
+import shop.*;
+
 
 import java.text.ParseException;
 
@@ -30,6 +30,7 @@ import java.text.ParseException;
 public class Main {
 	
 	public static Basket basket = new Basket();
+	public static Queue queue = Queue.getInstance();
 	
 
 	public static void main(String[] args) throws InvalidCustomerIDException, InvalidItemIdentifierException {
@@ -38,6 +39,7 @@ public class Main {
 			FileReadIn.readStaff("StaffList.txt");
 			FileReadIn.readMenuItems("MenuItems.txt");
 			FileReadIn.readOrders("orderList.txt");
+			queue.setupQueue();
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		} catch (ArrayIndexOutOfBoundsException e) {
