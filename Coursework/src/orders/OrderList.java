@@ -13,7 +13,7 @@ public class OrderList {
 	
 	private ArrayList<Order> orderList;
 	
-	private static OrderList orderlist = new OrderList();
+	private static OrderList orderlist;
 	
 	private OrderList() {
 		orderList = new ArrayList<Order>();
@@ -25,18 +25,18 @@ public class OrderList {
 		return orderlist;
 	}
 	
-//	public ArrayList<Order> getOrderList() {
-//		String message= "";
-//		try {
-//		 return orderList;
-//		}
-//		catch (NullPointerException e){
-//			 message = e.getMessage() + "Could not get orderList, value is null";
-//			 System.out.println(message);
-//		}
-//		return orderList;
-//		 
-//	}
+	public ArrayList<Order> getOrderList() {
+		String message= "";
+		try {
+		 return orderList;
+		}
+		catch (NullPointerException e){
+			 message = e.getMessage() + "Could not get orderList, value is null";
+			 System.out.println(message);
+		}
+		return orderList;
+		 
+	}
 	
 	public void addOrder(Order order)
 	{

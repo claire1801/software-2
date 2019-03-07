@@ -9,7 +9,7 @@ public class MenuList {
 	 */
 	private static TreeMap<String, MenuItems> menuList; 
 
-	private static MenuList menulist = new MenuList();
+	private static MenuList menulist;
 	
 	/**
 	 * Constructor for creating a tree map for menu list
