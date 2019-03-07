@@ -2,6 +2,8 @@ package staff;
 
 import java.util.Hashtable;
 
+import menu.MenuList;
+
 /**
  * 
  * @author frsrg
@@ -10,15 +12,21 @@ import java.util.Hashtable;
 
 public class StaffList {
 
-	public Hashtable<Integer, Staff> staffList;
+
+	private Hashtable<Integer, Staff> staffList;
 	
+	// for Singleton
+	private static StaffList staff = new StaffList();
 	
-	public StaffList() {
+	private StaffList() {
 		staffList = new Hashtable<Integer, Staff> ();		
 	}
 	
-	public Hashtable<Integer, Staff> getStaffList() {
-		return staffList;
+	// for Singleton
+	public static StaffList getInstance() {
+		if (staff == null) 
+			staff = new StaffList();
+		return staff;
 	}
 	
 	public void addStaffToList(Staff staff) {

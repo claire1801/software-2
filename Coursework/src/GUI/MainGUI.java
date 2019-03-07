@@ -40,6 +40,10 @@ import javax.swing.event.ListSelectionListener;
 
 import main.Main;
 import menu.MenuItems;
+import menu.MenuList;
+import staff.StaffList;
+import customers.*;
+import staff.*;
 
 public class MainGUI extends JFrame implements ActionListener {
 	int CustomerID = 0;
@@ -67,16 +71,23 @@ public class MainGUI extends JFrame implements ActionListener {
         // set flow layout for the frame
         this.getContentPane().setLayout(new FlowLayout());
         
-      
-        int size = Main.menuList.getNumberofMenuItemsInList();
+        MenuList menuList = MenuList.getInstance();
+        
+        
+        MenuList menulist = MenuList.getInstance();
+        
+        int size = menuList.getNumberofMenuItemsInList();
         String[] data = new String[size];
-        ID = new String[size];
+        ID= new String[size];
         int i = 0;
-        for(MenuItems entry: Main.menuList.getAllMenuItems()) {
+        Iterable<MenuItems> menuListValues = menulist.getAllMenuItems();
+        for(MenuItems entry: menuListValues) {
         	data[i] = entry.getName();
         	ID[i] = entry.getID();
         	i++;
         }
+      
+
  
 
         scrollPane = new JScrollPane();
@@ -122,12 +133,16 @@ public class MainGUI extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+    	MenuList menuList = MenuList.getInstance();
+    	CustomerList customerList = CustomerList.getInstance();
+    	StaffList staffList = StaffList.getInstance();
+    	
         if (e.getActionCommand().equals("Add to Basket")) {
             int index = list.getSelectedIndex();
             String uniquID = ID[index];
 
             
-            Main.basket.addItemToUnconfirmedOrder(Main.menuList.getItem(uniquID));
+            Main.basket.addItemToUnconfirmedOrder(menuList.getItem(uniquID));
 
             Iterable<MenuItems> basketList = Main.basket.getItemsInBasket();
             String output = "";
@@ -167,7 +182,7 @@ public class MainGUI extends JFrame implements ActionListener {
         	int ID = 0;
 			try{
 				ID = Integer.parseInt(IDnumber);
-				if(Main.customerList.customerExists(ID)) {
+				if(customerList.customerExists(ID)) {
 					CustomerID = ID;
 					details.setText("\"" + IDnumber + "\" is set");
 					Main.basket.setCurrentCustomerID(CustomerID);
@@ -186,7 +201,7 @@ public class MainGUI extends JFrame implements ActionListener {
         	int ID = 0;
 			try{
 				ID = Integer.parseInt(IDnumber);
-				if(Main.staffList.staffExists(ID)) {
+				if(staffList.staffExists(ID)) {
 					//CustomerID = ID;
 					details.setText("\"" + IDnumber + "\" is set for Staff");
 					Main.basket.setCurrentStaffID(ID);

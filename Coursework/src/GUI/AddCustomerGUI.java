@@ -14,6 +14,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import customers.Customer;
+import customers.CustomerList;
 import customers.MembershipType;
 import exceptions.InvalidCustomerIDException;
 import main.Main;
@@ -104,7 +105,8 @@ public class AddCustomerGUI extends JFrame implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) { 
     	if (e.getSource() == AddCustomer) {
-    		//Manager.basket.confirmedAndPaid();
+    		
+    		CustomerList customerList = CustomerList.getInstance();
     		
     		String IDnumber = ID.getText().trim();
     		String Customername = name.getText().trim();
@@ -116,7 +118,7 @@ public class AddCustomerGUI extends JFrame implements ActionListener{
     			details.setText("ID must be an integer");
     		}
     		
-    		if(Main.customerList.customerExists(ID) == false) {
+    		if(customerList.customerExists(ID) == false) {
     			MembershipType memType;
     			Customer newCustomer;
 
@@ -124,7 +126,7 @@ public class AddCustomerGUI extends JFrame implements ActionListener{
     				memType = MembershipType.MEMBER;
     				try {
     					newCustomer= new Customer(ID,memType,0,Customername);
-    					Main.customerList.addCustomer(ID, newCustomer);
+    					customerList.addCustomer(ID, newCustomer);
     					setVisible(false);
     				}catch(InvalidCustomerIDException e3) {
     					details.setText("ID must be an integer");
@@ -135,7 +137,7 @@ public class AddCustomerGUI extends JFrame implements ActionListener{
     				memType = MembershipType.STUDENT;
     				try {
     					newCustomer= new Customer(ID,memType,0,Customername);
-    					Main.customerList.addCustomer(ID, newCustomer);
+    					customerList.addCustomer(ID, newCustomer);
     					setVisible(false);
     				}catch(InvalidCustomerIDException e3) {
     					details.setText("ID must be an integer");
@@ -146,7 +148,7 @@ public class AddCustomerGUI extends JFrame implements ActionListener{
     				memType = MembershipType.EMPLOYEE;
     				try {
     					newCustomer= new Customer(ID,memType,0,Customername);
-    					Main.customerList.addCustomer(ID, newCustomer);
+    					customerList.addCustomer(ID, newCustomer);
     					setVisible(false);
     				}catch(InvalidCustomerIDException e3) {
     					details.setText("ID must be an integer");

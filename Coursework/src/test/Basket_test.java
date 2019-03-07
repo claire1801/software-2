@@ -1,6 +1,5 @@
 package test;
 
-import main.Basket;
 import static org.junit.Assert.*;
 
 
@@ -26,6 +25,7 @@ import menu.Drinks;
 import menu.Meals;
 import menu.MenuItems;
 import menu.Snacks;
+import shop.Basket;
 
 class Basket_test {
 	
