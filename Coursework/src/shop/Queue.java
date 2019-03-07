@@ -42,7 +42,7 @@ public class Queue {
 	public void setupQueue() {
 		OrderList ol = OrderList.getInstance();
 		MenuList ml = MenuList.getInstance();
-		ArrayList<Order> orderList = ol.getOrderList();
+		Iterable<Order> orderList = ol.getAllOrders();
 		//Queue queue = Queue.getInstance();
 		int prevOrderID = 0;
 		Basket basket = new Basket();

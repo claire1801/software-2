@@ -8,6 +8,8 @@ package orders;
  */
 import java.util.ArrayList;
 
+import menu.MenuItems;
+
 public class OrderList {
 	
 	
@@ -25,17 +27,20 @@ public class OrderList {
 		return orderlist;
 	}
 	
-	public ArrayList<Order> getOrderList() {
-		String message= "";
-		try {
-		 return orderList;
-		}
-		catch (NullPointerException e){
-			 message = e.getMessage() + "Could not get orderList, value is null";
-			 System.out.println(message);
-		}
+//	public ArrayList<Order> getOrderList() {
+//		String message= "";
+//		try {
+//		 return orderList;
+//		}
+//		catch (NullPointerException e){
+//			 message = e.getMessage() + "Could not get orderList, value is null";
+//			 System.out.println(message);
+//		}
+//		return orderList;
+//		 
+//	}
+	public Iterable<Order> getAllOrders() {
 		return orderList;
-		 
 	}
 	
 	public void addOrder(Order order)
