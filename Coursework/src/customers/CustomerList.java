@@ -1,6 +1,8 @@
 package customers;
 import java.util.Hashtable;
 
+import menu.MenuList;
+
 
 public class CustomerList {
 	
@@ -9,23 +11,29 @@ public class CustomerList {
 	 * 
 	 * customerList : List of customers with an integer as the key and a customer object for the value
 	 */
-	Hashtable<Integer, Customer> customerList;
+	private Hashtable<Integer, Customer> customerList;
+	
+	
+	private static CustomerList customers = new CustomerList();
 
 
 	/**
 	 * Constructor for creating a hash table for customer list
 	 */
-	public CustomerList() {
+	private CustomerList() {
 		customerList = new Hashtable<Integer, Customer> ();
 	}
 	
 	/**
-	 * Getter for returning the customer list
-	 * @return customerList
+	 * return the instance of CustomerList
+	 * @return
 	 */
-	public Hashtable<Integer, Customer> getCustomerList() {
-		return customerList;
+	public static CustomerList getInstance() {
+		if (customers == null) 
+			customers = new CustomerList();
+		return customers;
 	}
+	
 
 	/**
 	 * Add a customer to customer list

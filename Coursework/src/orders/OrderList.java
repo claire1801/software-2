@@ -13,22 +13,30 @@ public class OrderList {
 	
 	private ArrayList<Order> orderList;
 	
-	public OrderList() {
+	private static OrderList orderlist = new OrderList();
+	
+	private OrderList() {
 		orderList = new ArrayList<Order>();
 	}
 	
-	public ArrayList<Order> getOrderList() {
-		String message= "";
-		try {
-		 return orderList;
-		}
-		catch (NullPointerException e){
-			 message = e.getMessage() + "Could not get orderList, value is null";
-			 System.out.println(message);
-		}
-		return orderList;
-		 
+	public static OrderList getInstance() {
+		if (orderlist == null)
+			orderlist = new OrderList();
+		return orderlist;
 	}
+	
+//	public ArrayList<Order> getOrderList() {
+//		String message= "";
+//		try {
+//		 return orderList;
+//		}
+//		catch (NullPointerException e){
+//			 message = e.getMessage() + "Could not get orderList, value is null";
+//			 System.out.println(message);
+//		}
+//		return orderList;
+//		 
+//	}
 	
 	public void addOrder(Order order)
 	{

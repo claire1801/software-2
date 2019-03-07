@@ -7,14 +7,27 @@ public class MenuList {
 	 * Variable for MenuList class
 	 * menuList : List of menu items with a string as the key and a menu item object for the value
 	 */
-	public static TreeMap<String, MenuItems> menuList; 
+	private static TreeMap<String, MenuItems> menuList; 
 
+	private static MenuList menulist = new MenuList();
+	
 	/**
 	 * Constructor for creating a tree map for menu list
 	 */
-	public MenuList() { 
+	private MenuList() { 
 		menuList = new TreeMap<String, MenuItems> ();
 	}
+	
+	/**
+	 * public method to return instance of the MenuList
+	 * @return
+	 */
+	public static MenuList getInstance() {
+		if (menulist == null) 
+			menulist = new MenuList();
+		return menulist;
+	}
+	
 	
 //	/**
 //	 *  Getter for returning the menu list

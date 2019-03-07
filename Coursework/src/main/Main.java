@@ -9,7 +9,6 @@ import java.io.PrintWriter;
 import javax.swing.JFrame;
 
 import GUI.MainGUI;
-
 import customers.CustomerList;
 import exceptions.InvalidCustomerIDException;
 import exceptions.InvalidItemIdentifierException;
@@ -17,7 +16,7 @@ import exceptions.InvalidItemIdentifierException;
 import menu.MenuList;
 
 import orders.OrderList;
-
+import shop.Basket;
 import staff.StaffList;
 
 import java.text.ParseException;
@@ -30,14 +29,7 @@ import java.text.ParseException;
  */
 public class Main {
 	
-
-	
-	public static OrderList orderList = new OrderList();
-	public static MenuList menuList = new MenuList();
-	public static StaffList staffList = new StaffList();
-	public static CustomerList customerList = new CustomerList();
 	public static Basket basket = new Basket();
-	
 	
 
 	public static void main(String[] args) throws InvalidCustomerIDException, InvalidItemIdentifierException {
@@ -47,7 +39,6 @@ public class Main {
 			FileReadIn.readMenuItems("MenuItems.txt");
 			FileReadIn.readOrders("orderList.txt");
 		} catch (NumberFormatException e) {
-			
 			e.printStackTrace();
 		} catch (ArrayIndexOutOfBoundsException e) {
 			e.printStackTrace();
@@ -110,6 +101,11 @@ public class Main {
 	 */
 	
 	private static void updateFiles() {
+		
+		MenuList menuList = MenuList.getInstance();
+		OrderList orderList = OrderList.getInstance();
+		CustomerList customerList = CustomerList.getInstance();
+		
 		String order = orderList.writeReport();
 		printToFile("orderList.txt",order);
 		
@@ -130,7 +126,6 @@ public class Main {
 	 * @param filename - name of file to write to
 	 * @param details - string to write
 	 */
-	
 	private static void printToFile(String filename, String details)  {
 		try {
 			FileWriter fw = new FileWriter(filename);
@@ -153,6 +148,9 @@ public class Main {
 	 * @param filename - name of file to write to.
 	 */
 	private static  void writeReport(String filename) {
+		
+		OrderList orderList = OrderList.getInstance();
+		
 		String details = "Summary of Cafe\n";
 		int sales = orderList.totalSales();
 		double income = orderList.totalIncome();

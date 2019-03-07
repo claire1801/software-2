@@ -9,15 +9,19 @@ import java.util.Date;
 import java.util.Scanner;
 
 import customers.Customer;
+import customers.CustomerList;
 import customers.MembershipType;
 import exceptions.InvalidCustomerIDException;
 import exceptions.InvalidItemIdentifierException;
 import menu.Drinks;
 import menu.Meals;
 import menu.MenuItems;
+import menu.MenuList;
 import menu.Snacks;
 import orders.Order;
-import staff.Staff;
+import orders.OrderList;
+import staff.*;
+
 /**
  * reads in files (orderlist, customerlist, stafflist , menulist) should be called from Main
  * @author samth
@@ -39,7 +43,8 @@ public class FileReadIn {
 
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
-		//int counter = 0; not used????
+		
+		MenuList menuList = MenuList.getInstance();
 		
 		while (scanner.hasNextLine()) {
 			
@@ -58,17 +63,17 @@ public class FileReadIn {
 				MenuItems newMenuItem = new Drinks(item[0],item[1],cost,item[3],item[4]);
 				//System.out.println("Drink");
 				//System.out.println(item[0]);
-				Main.menuList.addItem(item[1], newMenuItem);
+				menuList.addItem(item[1], newMenuItem);
 			}
 			else if(item[1].substring(0, 5).equals("MEALS")) {
 				MenuItems newMenuItem = new Meals(item[0],item[1],cost,item[3],item[4]);
 				//System.out.println("meal");
-				Main.menuList.addItem(item[1], newMenuItem);
+				menuList.addItem(item[1], newMenuItem);
 			}
 			else if(item[1].substring(0, 5).equals("SNACK")) {
 				MenuItems newMenuItem = new Snacks(item[0],item[1],cost,item[3],item[4]);
 				//System.out.println("snack");
-				Main.menuList.addItem(item[1], newMenuItem);
+				menuList.addItem(item[1], newMenuItem);
 			}
 			}catch(InvalidItemIdentifierException e1) {
 				e1.printStackTrace();
@@ -97,6 +102,8 @@ public class FileReadIn {
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
 		
+		OrderList orderList = OrderList.getInstance();
+		
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
 			String[] order = line.split("/");
@@ -116,7 +123,7 @@ public class FileReadIn {
 			//System.out.println(timestamp);
 			
 			Order newOrder = new Order(orderID,customerID, timestamp, order[3],cost,discount,staffId);
-			Main.orderList.addOrder(newOrder);
+			orderList.addOrder(newOrder);
 		}
 		scanner.close();
 		
@@ -132,6 +139,8 @@ public class FileReadIn {
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
 		
+		StaffList staffList = StaffList.getInstance();
+		
 		
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
@@ -144,7 +153,7 @@ public class FileReadIn {
 			//System.out.print(names[0] + " ");
 			//System.out.println(names[lastIndex]);
 			Staff staffmember = new Staff(ID,names[0],names[lastIndex]);
-			Main.staffList.addStaffToList(staffmember);
+			staffList.addStaffToList(staffmember);
 		}
 		scanner.close();
 		
@@ -162,6 +171,8 @@ public class FileReadIn {
 		
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
+		
+		CustomerList customerList = CustomerList.getInstance();
 		
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
@@ -188,7 +199,7 @@ public class FileReadIn {
 			Customer newCustomer;
 			try {
 				newCustomer = new Customer(ID,memType,noDrinks,customer[0]);
-				Main.customerList.addCustomer(ID,newCustomer);//name?
+				customerList.addCustomer(ID,newCustomer);//name?
 			} catch (InvalidCustomerIDException e) {
 				System.out.println("ID of customer incorect format");
 			}
