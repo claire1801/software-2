@@ -1,4 +1,6 @@
 package menu;
+import java.util.ArrayList;
+import java.util.Set;
 import java.util.TreeMap;
 
 public class MenuList {
@@ -15,7 +17,7 @@ public class MenuList {
 	 * Constructor for creating a tree map for menu list
 	 */
 	private MenuList() { 
-		menuList = new TreeMap<String, MenuItems> ();
+		this.menuList = new TreeMap<String, MenuItems> ();
 	}
 	
 	/**
@@ -50,10 +52,10 @@ public class MenuList {
 	 * @param value
 	 */
 	public void addItem(String key, MenuItems value) {
-		if (menuList.containsKey(key)) {
+		if (this.menuList.containsKey(key)) {
 			throw new IllegalArgumentException ("Key already exists");  
 		}
-		menuList.put(key, value);
+		this.menuList.put(key, value);
 	}
 
 	/**
@@ -62,8 +64,9 @@ public class MenuList {
 	 * @return key
 	 */
 	public MenuItems getItem(String key) {
-		if (menuList.containsKey(key)) {
-			return menuList.get(key);
+		
+		if (this.menuList.containsKey(key)) {
+			return this.menuList.get(key);
 		} throw new IllegalArgumentException ("Key does not exist"); 
 	}
 	 
@@ -72,10 +75,10 @@ public class MenuList {
 	 * @param key
 	 */
 	public void remove(String key){
-		if (!menuList.containsKey(key)) {
+		if (!this.menuList.containsKey(key)) {
 			throw new IllegalArgumentException ("Item does not exist");
 		} 
-		menuList.remove(key);
+		this.menuList.remove(key);
 	}
 	
 	
@@ -85,7 +88,7 @@ public class MenuList {
 	 * @return the size of the menu, i.e. number of items
 	 */
 	public int getNumberofMenuItemsInList() {
-		return menuList.size();
+		return this.menuList.size();
 	}
 	
 	/**
@@ -94,7 +97,7 @@ public class MenuList {
 	 * @return
 	 */
 	public Iterable<MenuItems> getAllMenuItems() {
-		return menuList.values();
+		return this.menuList.values();
 	}
 	
 	
@@ -113,6 +116,21 @@ public class MenuList {
 			report += entry.getAllergens() + "\n";
 		}
 		return report;
+	}
+	
+	public MenuItems getRandomItem() {
+		double randomNumber = Math.random();
+		int index = (int) (randomNumber * this.getNumberofMenuItemsInList());
+		int i = 0;
+		for(MenuItems item : this.menuList.values()) {
+			if(i == index ) {
+				return item;
+			}else {
+				i++;
+			}
+		}
+		return null;
+		
 	}
 	
 }
