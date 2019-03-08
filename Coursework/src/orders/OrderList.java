@@ -108,7 +108,10 @@ public class OrderList {
 		//	throw new IndexOutOfBoundsException("Cannot generate order report, orderList is empty");
 		//}
 		
-	
+	public synchronized int getNextOrderID() {
+		int size = orderList.size() - 1;
+		return orderList.get(size).getOrderID()+1;
+	}
 	
 	
 }
