@@ -47,6 +47,7 @@ public class Queue {
 		int prevOrderID = 0;
 		Basket basket = new Basket();
 		for(Order order: orderList) {
+			basket.setCurrentCustomerID(order.getCustomerID());
 			if(order.getOrderID() == prevOrderID) {
 				MenuItems item = ml.getItem(order.getItemID());
 				basket.addItemToUnconfirmedOrder(item);
@@ -59,7 +60,7 @@ public class Queue {
 				prevOrderID = order.getOrderID();
 			}
 		}
-		System.out.println(this.numberInQueue());
+		//System.out.println(this.numberInQueue());
 	}
 	/**
 	 * add an basket (customer) to the end of the queue. This method is synchronized
@@ -75,6 +76,7 @@ public class Queue {
 	public synchronized Basket getNextInQueue() {
 		Basket nextBasket = this.queue.get(0);
 		this.queue.remove(0);
+		//System.out.println("no in queue" + this.numberInQueue());
 		return nextBasket;
 		
 	}
@@ -85,23 +87,41 @@ public class Queue {
 	
 	public boolean queueEmpty(){
 		if(this.queue.isEmpty()) {
-			return false;		
+			return true;		
 		} else {
-		return true;
+		return false;
 		}
 	}
-		
+	/**
+	 * creates a new random basket and adds it to the queue
+	 */
 	
 	
 	public void addRandomCustomer() {
+	//	System.out.println("hello");
+		Basket basket = new Basket();
 		CustomerList cl = CustomerList.getInstance();
-		
+		MenuList ml = MenuList.getInstance();
+		//Iterable<MenuItems> menuItems = ml.getAllMenuItems();
+	//	System.out.println("hello");
 		double randomNumber = Math.random();
-		int numberOfItems = (int) (randomNumber * 10) + 1;
-		int customerId = (int) randomNumber * cl.getSize() + 1;
-		for(int x = 0; x < numberOfItems;) {
-			//loop and add items to basket  
+		int numberOfItems = (int) (randomNumber * 5) + 1;
+		randomNumber = Math.random();
+		int customerId = (int) (randomNumber * cl.getSize() + 1) ;
+		if(cl.customerExists(customerId)== false) {
+			customerId = 1;
 		}
+		basket.setCurrentCustomerID(customerId);
+	//	System.out.println(numberOfItems);
+		for(int x = 0; x < numberOfItems; x++) {
+	//		System.out.println("hello1");
+			MenuItems item = ml.getRandomItem();
+			basket.addItemToUnconfirmedOrder(item);
+		}
+			
+		this.queue.add(basket);
+		System.out.println(this.numberInQueue());
+	
 	}
 	
 

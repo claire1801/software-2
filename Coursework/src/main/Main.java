@@ -30,7 +30,7 @@ import java.text.ParseException;
 public class Main {
 	
 	public static Basket basket = new Basket();
-	//public static Queue queue = Queue.getInstance();
+	public static Queue queue = Queue.getInstance();
 	
 
 	public static void main(String[] args) throws InvalidCustomerIDException, InvalidItemIdentifierException {
@@ -39,8 +39,12 @@ public class Main {
 			FileReadIn.readStaff("StaffList.txt");
 			FileReadIn.readMenuItems("MenuItems.txt");
 			FileReadIn.readOrders("orderList.txt");
-			Queue queue = Queue.getInstance();
+			
 			queue.setupQueue();
+			for(int i =0; i < 20; i++) { // generate 20 new customer orders
+			queue.addRandomCustomer();
+			}
+			
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		} catch (ArrayIndexOutOfBoundsException e) {

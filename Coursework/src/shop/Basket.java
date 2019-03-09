@@ -197,14 +197,18 @@ public class Basket {
 		OrderList orderList = OrderList.getInstance();
 		int numberOfItems = unconfirmedOrder.size();
 		Timestamp time = new Timestamp(System.currentTimeMillis());
+		int id = orderList.getNextOrderID(); //total sales returns relative size
+		
 		for (MenuItems item: unconfirmedOrder) {
-			int lastOrderID = orderList.totalSales(); //total sales returns relative size
-			int id = lastOrderID ++;
+			
 			Order newOrder = new Order(id, currentCustomerID, time, item.getID(), item.getCost(), discount/numberOfItems,this.currentStaffID);
 			// note at some point we should probably include staff id in with orders too
 			orderList.addOrder(newOrder);  
 		}
 		this.clearBasket();
+	}
+	public int getCurrentCustomerID() {
+		return this.currentCustomerID;
 	}
 	
 
