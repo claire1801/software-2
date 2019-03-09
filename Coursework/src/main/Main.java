@@ -60,6 +60,14 @@ public class Main {
 //		
 //		Order testorder1 = new Order("0002",0001,timestamp,"COFEE001",20.1,1.1);
 		
+		// create the staff thread
+		Thread staff1 = new Thread(new Staff(101, "Louise", "Ritchie", queue));
+		staff1.start();
+		
+		Thread staff2 = new Thread(new Staff(102, "Sam", "Haley", queue));
+		staff2.start();
+		
+		
 		  javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			  
 			  public void run() {
