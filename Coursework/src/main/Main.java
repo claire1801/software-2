@@ -82,18 +82,21 @@ public class Main {
  * create the GUI interface
  */
 	private static void createAndShowGUI() {
-   	 
-  	  //Create and set up the window.
-  	 
-  	  JFrame frame = new MainGUI();
+   	  JFrame frame = new MainGUI();
+		JFrame frame2 = new Stage2GUI();
   	 
   	  //Display the window.
   	 
   	  frame.pack();
+  	  frame2.pack();
   	 
   	  frame.setVisible(true);
+  	  frame2.setVisible(true);
+  	  
   	 
   	  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  	  frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  	 
   	 
   	 }
 	
