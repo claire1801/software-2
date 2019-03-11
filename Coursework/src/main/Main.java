@@ -17,7 +17,7 @@ import menu.MenuList;
 
 import orders.OrderList;
 import shop.*;
-
+import staff.Staff;
 
 import java.text.ParseException;
 
@@ -59,6 +59,12 @@ public class Main {
 //		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 //		
 //		Order testorder1 = new Order("0002",0001,timestamp,"COFEE001",20.1,1.1);
+		
+		Thread staff1 = new Thread(new Staff(101, "Louise", "Ritchie", queue));
+		staff1.start();
+		
+		Thread staff2 = new Thread(new Staff(102, "Sam", "Haley", queue));
+		staff2.start();
 		
 		  javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			  
@@ -162,7 +168,7 @@ public class Main {
 		int sales = orderList.totalSales();
 		double income = orderList.totalIncome();
 		details += "In total there have been " + sales + " orders made.\n";
-		details += "This gives a total income of " + income + " (£)\n\n";
+		details += "This gives a total income of " + income + " (Â£)\n\n";
 		details += "The following is a full list of all items Ordered:\n";
 		details += orderList.writeReport();
 		
