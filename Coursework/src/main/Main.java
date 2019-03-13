@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import javax.swing.JFrame;
 
 import GUI.MainGUI;
+import GUI.Stage2GUI;
 import customers.CustomerList;
 import exceptions.InvalidCustomerIDException;
 import exceptions.InvalidItemIdentifierException;
@@ -17,7 +18,7 @@ import menu.MenuList;
 
 import orders.OrderList;
 import shop.*;
-import staff.Staff;
+
 
 import java.text.ParseException;
 
@@ -32,6 +33,7 @@ public class Main {
 	public static Basket basket = new Basket();
 	public static Queue queue = Queue.getInstance();
 	
+	
 
 	public static void main(String[] args) throws InvalidCustomerIDException, InvalidItemIdentifierException {
 		try {
@@ -39,12 +41,6 @@ public class Main {
 			FileReadIn.readStaff("StaffList.txt");
 			FileReadIn.readMenuItems("MenuItems.txt");
 			FileReadIn.readOrders("orderList.txt");
-			
-			queue.setupQueue();
-			for(int i =0; i < 20; i++) { // generate 20 new customer orders
-			queue.addRandomCustomer();
-			}
-			
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		} catch (ArrayIndexOutOfBoundsException e) {
@@ -54,17 +50,8 @@ public class Main {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-//		//SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-//		Date date= new Date();
-//		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-//		
-//		Order testorder1 = new Order("0002",0001,timestamp,"COFEE001",20.1,1.1);
 		
-		Thread staff1 = new Thread(new Staff(101, "Louise", "Ritchie", queue));
-		staff1.start();
-		
-		Thread staff2 = new Thread(new Staff(102, "Sam", "Haley", queue));
-		staff2.start();
+		setupQueue(20);
 		
 		  javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			  
@@ -75,7 +62,22 @@ public class Main {
 			  }
 			   
 			    });
+		  Scheduler sched = new Scheduler();
+		  Thread TimeThread = new Thread(sched);
+		  TimeThread.start();
+		  
 
+	}
+	/**
+	 * set up queue and add random customers  to queue
+	 * @param newCustomers - number of customers to add
+	 */
+	
+	private static void setupQueue(int newCustomers) {
+		queue.setupQueue();
+		for(int i =0; i < newCustomers; i++) { 
+		queue.addRandomCustomer();
+		}
 	}
 	
 /**
