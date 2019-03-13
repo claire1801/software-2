@@ -20,6 +20,7 @@ import menu.MenuList;
 import menu.Snacks;
 import orders.Order;
 import orders.OrderList;
+import shop.Queue;
 import staff.*;
 
 /**
@@ -138,6 +139,7 @@ public class FileReadIn {
 	public static void readStaff(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
+		//Queue queue = Queue.getInstance();
 		
 		StaffList staffList = StaffList.getInstance();
 		
@@ -155,6 +157,7 @@ public class FileReadIn {
 			Staff staffmember = new Staff(ID,names[0],names[lastIndex]);
 			staffList.addStaffToList(staffmember);
 		}
+		//System.out.println("start size" + staffList.size());
 		scanner.close();
 		
 	}
@@ -182,6 +185,10 @@ public class FileReadIn {
 			}
 			int ID = Integer.parseInt(customer[1]);
 			int noDrinks = Integer.parseInt(customer[2]);
+			if(noDrinks > 4) {
+				noDrinks = 1;
+				System.out.println("to many drinks " + customer[0]);
+			}
 			String member = customer[3];
 			MembershipType memType;
 			if(member.charAt(0) == 'E') {
