@@ -6,6 +6,7 @@ import java.util.Random;
 import customers.CustomerList;
 import menu.MenuItems;
 import menu.MenuList;
+import main.Log;
 import orders.Order;
 import orders.OrderList;
 /**
@@ -67,12 +68,13 @@ public class Queue {
 	 * @param newBasket - the basket to add
 	 */
 	public synchronized void addToQueue(Basket newBasket) {
-		
-		if (newBasket.getOnline() == true); {
+		if (newBasket.getOnline() == true) {
 			this.queue.add(0, newBasket);
+		}else {
+			this.queue.add(newBasket);
 		}
+
 		
-		this.queue.add(newBasket);
 	}
 	/**
 	 * returns the basket (customer) at the beginning of the queue ( index 0) and removes it from the queue. This method is synchronized
@@ -103,42 +105,37 @@ public class Queue {
 	
 	
 	public void addRandomCustomer() {
-	
+	//	System.out.println("hello");
 		Basket basket = new Basket();
 		CustomerList cl = CustomerList.getInstance();
 		MenuList ml = MenuList.getInstance();
-		
-		
+		//Iterable<MenuItems> menuItems = ml.getAllMenuItems();
+	//	System.out.println("hello");
 		double randomNumber = Math.random();
 		int numberOfItems = (int) (randomNumber * 5) + 1;
-		
-		randomNumber = Math.random();
-		int online = (int) (randomNumber);
-		if (online <= 0.5) { 
-		basket.setOnline(true); }
-		else { basket.setOnline(false); }
-		
-		
 		randomNumber = Math.random();
 		int customerId = (int) (randomNumber * cl.getSize() + 1) ;
 		if(cl.customerExists(customerId)== false) {
 			customerId = 1;
 		}
+		randomNumber = Math.random();
+		if (randomNumber <= 0.1) { 
+			basket.setOnline(true); }
+			else { basket.setOnline(false); }
+
+		
 		basket.setCurrentCustomerID(customerId);
+	//	System.out.println(numberOfItems);
 		for(int x = 0; x < numberOfItems; x++) {
-	
+	//		System.out.println("hello1");
 			MenuItems item = ml.getRandomItem();
 			basket.addItemToUnconfirmedOrder(item);
 		}
-			
+		Log.writeToFile("Customer " + basket.getCurrentCustomerID() + " was added to the queue");	
 		this.queue.add(basket);
 		System.out.println(this.numberInQueue());
 	
 	}
-	
-	public void addOnlineOrder() {}
-	
-	
 	
 
 }

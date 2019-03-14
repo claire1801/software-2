@@ -14,7 +14,7 @@ import staff.StaffList;
 public class Scheduler implements Runnable {
 	
 	private int staffCounter = 0;
-	public int Speed = 10;
+	public int Speed = 1;
 	ArrayList<Integer> currentStaff;
 	
 	
@@ -62,15 +62,12 @@ public class Scheduler implements Runnable {
 			}
 			queue.addRandomCustomer();
 			try {
-				Thread.sleep(Speed * 100);
+				Thread.sleep(Speed * 1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			
 		}
 	}
-	
+
 }
-	
-	
-	

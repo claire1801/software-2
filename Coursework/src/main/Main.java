@@ -1,8 +1,6 @@
 package main;
 
 
-
-
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,12 +17,10 @@ import exceptions.InvalidItemIdentifierException;
 import menu.MenuList;
 
 import orders.OrderList;
-
 import shop.*;
-import staff.Staff;
+
 
 import java.text.ParseException;
-
 
 
 /**
@@ -36,7 +32,7 @@ public class Main {
 	
 	public static Basket basket = new Basket();
 	public static Queue queue = Queue.getInstance();
-	
+	public static Scheduler sched;
 	
 
 	public static void main(String[] args) throws InvalidCustomerIDException, InvalidItemIdentifierException {
@@ -66,18 +62,9 @@ public class Main {
 			  }
 			   
 			    });
-		  
-//		  Thread staff1 = new Thread(new Staff(101, "Louise", "Ritchie", queue));
-//		  staff1.start();
-//			
-//		  Thread staff2 = new Thread(new Staff(102, "Sam", "Haley", queue));
-//		  staff2.start();
-		  
-		  Scheduler sched = new Scheduler();
+		  sched = new Scheduler();
 		  Thread TimeThread = new Thread(sched);
 		  TimeThread.start();
-		  
-		  countThreads();
 		  
 
 	}
@@ -92,33 +79,6 @@ public class Main {
 		queue.addRandomCustomer();
 		}
 	}
-	
-	
-	
-public static void countThreads() {
-    	
-    	
-    	System.out.println("Number of threads: " + Thread.activeCount());
-    	
-    	Thread[] listOfThreads = new Thread[Thread.activeCount()];
-    	
-    	Thread.enumerate(listOfThreads);
-    	
-    	for (Thread i:listOfThreads) {
-    		System.out.println(i.getName());
-    	}
-    	
-    	for (Thread i:listOfThreads) {
-    		System.out.println(i.getPriority());
-    	}
-    	
-    	
-    	
-    	try {
-    		Thread.sleep(2000);
-    	}
-    	catch (InterruptedException e) {}
-    }
 	
 /**
  * create the GUI interface

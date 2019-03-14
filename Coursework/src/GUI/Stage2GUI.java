@@ -21,11 +21,13 @@ import javax.swing.SwingConstants;
 import javax.swing.text.JTextComponent;
 
 import customers.CustomerList;
+import exceptions.NoStaffAvailableException;
 import main.Main;
 import menu.MenuItems;
 import menu.MenuList;
 import orders.Order;
 import orders.OrderList;
+import staff.Staff;
 import staff.StaffList;
 
 public class Stage2GUI extends JFrame implements ActionListener {
@@ -142,12 +144,34 @@ public class Stage2GUI extends JFrame implements ActionListener {
 		}
 
 		if (e.getActionCommand().equals("Add another server")) {
-			// add functionality to call new server thread here.
-			serverIncrement++;
-			totalElements++; //increment total elements in panel
-			serverAdded = new JTextField(5);
-			serverAdded.setText("New server added, number: " + serverIncrement);
+			
+			// my code here
+			String message;
 
+			try 
+			{
+				Staff server = StaffList.getInstance().getNextAvailableServer();
+				Thread newServer = new Thread(server);
+				server.isServing(true);
+				newServer.start();
+				serverIncrement++;  // I'm not sure what these are for?
+				totalElements++; 	// I'm not sure what these are for?
+				message = "New server added, number: " + serverIncrement;
+			} 
+			
+			catch (NoStaffAvailableException excep) 
+			{
+				message = excep.getMessage();
+			}
+		
+			
+			//serverIncrement++;
+			//totalElements++; //increment total elements in panel
+			serverAdded = new JTextField(5);
+			//serverAdded.setText("New server added, number: " + serverIncrement);
+			serverAdded.setText(message);
+			
+			
 			southPanel.add(serverAdded, BorderLayout.CENTER);
 			// serverList.add(serverAdded);
 			String output = "";
@@ -156,6 +180,20 @@ public class Stage2GUI extends JFrame implements ActionListener {
 
 			southPanel.revalidate();
 			southPanel.repaint();
+//			// add functionality to call new server thread here.
+//			serverIncrement++;
+//			totalElements++; //increment total elements in panel
+//			serverAdded = new JTextField(5);
+//			serverAdded.setText("New server added, number: " + serverIncrement);
+//
+//			southPanel.add(serverAdded, BorderLayout.CENTER);
+//			// serverList.add(serverAdded);
+//			String output = "";
+//			output += String.format("%s\n", "a new server is available");
+//			details.setText(output);
+//
+//			southPanel.revalidate();
+//			southPanel.repaint();
 
 		}
 

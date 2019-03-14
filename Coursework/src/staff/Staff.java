@@ -3,7 +3,6 @@ package staff;
 
 import main.Log;
 import main.Main;
-import main.Scheduler;
 import shop.Basket;
 import shop.Queue;
 
@@ -25,6 +24,14 @@ public class Staff implements Runnable {
 	private Queue queue;
 	private Basket unprocessedOrder;
 	
+	
+	// staff have to 'log in' to be on duty and serving
+	private boolean atWork = true; // set to True until a 'home' screen where the on duty staff can be set
+	private boolean serving = false;
+	
+	
+	//private static final int orderTime = 5000; //milliseconds
+	// could possibly add wage, no. of sales etc.
 	
 	
 	public Staff(int StaffID, String firstname, String lastname) {
@@ -55,7 +62,8 @@ public class Staff implements Runnable {
 	private void processOrder() throws InterruptedException {
 		unprocessedOrder = queue.getNextInQueue();
 		updateLog();
-		Log.writeToFile("Customer ID: " + unprocessedOrder.getCurrentCustomerID() + " is being processed by Staff " + StaffID + " " + firstName +" " + lastName);
+		System.out.println("online: " + unprocessedOrder.getOnline());
+		Log.writeToFile("Customer ID: " + unprocessedOrder.getCurrentCustomerID() + " is being processed by Staff " + StaffID);
 		Thread.sleep(Main.sched.Speed * 500);
 		Log.writeToFile("Customer ID: " + unprocessedOrder.getCurrentCustomerID() + " order is complete");
 		updateLog2();
@@ -103,8 +111,34 @@ public class Staff implements Runnable {
 	
 	public void setStaffLastName(String lName) {
 		this.lastName = lName;
-
-
+	}
+	
+	/**
+	 * method to set a staff member as on duty
+	 */
+	public void isAtWork(boolean val) {
+		this.atWork = val;
+	}
+	
+	/**
+	 *  method to return if a staff member is on duty
+	 */
+	public boolean isStaffAtWork() {
+		return this.atWork;
+	}
+	
+	/**
+	 * method to set a staff member as serving
+	 */
+	public void isServing(boolean val) {
+		this.serving = val;
+	}
+	
+	/**
+	 *  method to return if a staff member is on duty
+	 */
+	public boolean isStaffServing() {
+		return this.serving;
 	}
 
 }

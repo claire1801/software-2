@@ -1,8 +1,10 @@
 package staff;
 
 import java.util.Hashtable;
+import java.util.Set;
 
 import exceptions.InvalidStaffIDException;
+import exceptions.NoStaffAvailableException;
 
 
 /**
@@ -84,6 +86,19 @@ public class StaffList {
 	public boolean staffExists(int ID) {
 		return staffList.containsKey(ID);
 	}
+	
+	
+	public Staff getNextAvailableServer() throws NoStaffAvailableException {
+		Set<Integer> keys = staffList.keySet();
+		for(int key : keys) {
+			Staff staff = staffList.get(key);
+			if(staff.isStaffAtWork() == true && staff.isStaffServing() == false) {
+				return staff;
+			} else throw new NoStaffAvailableException("There are no staff working that are free to serve");
+		}
+		return null;
+	}
+	
 	
 //	public void removeStaffFromList(int id) {
 //		staffList.remove(id);
