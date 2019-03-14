@@ -68,7 +68,7 @@ public class Customer {
 		return numberPreviousCoffees;
 	}
 
-	public void setNumberPreviousCoffees(int numberPreviousCoffees) {
+	public  synchronized void setNumberPreviousCoffees(int numberPreviousCoffees) {
 		this.numberPreviousCoffees = numberPreviousCoffees;
 	}
 	

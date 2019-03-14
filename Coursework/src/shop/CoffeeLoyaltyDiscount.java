@@ -17,15 +17,16 @@ public class CoffeeLoyaltyDiscount extends Discount {
 		double coffeeLoyaltyDiscount = 0;
 		CustomerList customerList = CustomerList.getInstance();
 		Customer customer = customerList.getCustomer(customerID);
-		int previousCoffees = customer.getNumberPreviousCoffees();
+		//int previousCoffees = customer.getNumberPreviousCoffees();
 		for(MenuItems item : unconfirmedOrder) 
 		{
-			if(item.getID().substring(0, 5).equals("COFEE") && previousCoffees == 4) 
+			int previousCoffees = customer.getNumberPreviousCoffees();
+			if(item.getID().substring(0, 5).equals("COFEE") && previousCoffees >= 4) 
 			{
 				coffeeLoyaltyDiscount += item.getCost();
 				customer.setNumberPreviousCoffees(0);
 			} 
-			else 
+			else if (item.getID().substring(0, 5).equals("COFEE"))
 			{
 				customer.setNumberPreviousCoffees(previousCoffees + 1);
 			}

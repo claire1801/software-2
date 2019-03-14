@@ -39,7 +39,7 @@ public class CustomerList {
 	 * @param key
 	 * @param value
 	 */
-	public void addCustomer(Integer key, Customer value) {
+	public  synchronized void addCustomer(Integer key, Customer value) {
 		
 		if(value == null) {
 			throw new IllegalArgumentException ("Can not add a new customer as not all the details are provided");
