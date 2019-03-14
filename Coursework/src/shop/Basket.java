@@ -38,9 +38,9 @@ public class Basket {
 	private int currentStaffID; // should this be added to the constructor, i.e. will we know staff/customer before basket screen
 	private int currentCustomerID; // will we need more than one basket ever? probably not
 	private static final double MEAL_DEAL_DISCOUNT = 1.5;
+	private boolean online;
 	
-
-
+	
 	/**
 	 * 
 	 * Simple Basket constructor of ArrayList
@@ -71,6 +71,8 @@ public class Basket {
 		this.discount = 0;
 		this.finalBill = 0;		
 	}
+	
+	//new instance & method
 
 	/**
 	 * sets the baskets current customer ID
@@ -95,6 +97,8 @@ public class Basket {
 	public Iterable<MenuItems> getItemsInBasket(){
 		return unconfirmedOrder;
 	}
+	
+	
 		
 // 	
 // 	/**
@@ -198,10 +202,11 @@ public class Basket {
 		int numberOfItems = unconfirmedOrder.size();
 		Timestamp time = new Timestamp(System.currentTimeMillis());
 		int id = orderList.getNextOrderID(); //total sales returns relative size
+		boolean online = orderList.getOnlineOrder();
 		
 		for (MenuItems item: unconfirmedOrder) {
 			
-			Order newOrder = new Order(id, currentCustomerID, time, item.getID(), item.getCost(), discount/numberOfItems,this.currentStaffID);
+			Order newOrder = new Order(id, currentCustomerID, time, item.getID(), item.getCost(), discount/numberOfItems,this.currentStaffID, online);
 			// note at some point we should probably include staff id in with orders too
 			orderList.addOrder(newOrder);  
 		}
@@ -209,6 +214,16 @@ public class Basket {
 	}
 	public int getCurrentCustomerID() {
 		return this.currentCustomerID;
+	}
+	
+	public boolean getOnline() 
+	{
+		return this.online;
+	}
+	
+	public void setOnline(boolean online)  
+	{
+		this.online = online;
 	}
 	
 
