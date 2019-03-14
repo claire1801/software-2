@@ -32,7 +32,7 @@ public class Main {
 	
 	public static Basket basket = new Basket();
 	public static Queue queue = Queue.getInstance();
-	
+	public static Scheduler sched;
 	
 
 	public static void main(String[] args) throws InvalidCustomerIDException, InvalidItemIdentifierException {
@@ -62,7 +62,7 @@ public class Main {
 			  }
 			   
 			    });
-		  Scheduler sched = new Scheduler();
+		  sched = new Scheduler();
 		  Thread TimeThread = new Thread(sched);
 		  TimeThread.start();
 		  
