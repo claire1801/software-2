@@ -8,70 +8,68 @@ package orders;
  */
 import java.util.ArrayList;
 
-
+import menu.MenuItems;
 
 public class OrderList {
 	
 	
 	private ArrayList<Order> orderList;
 	
-	private static OrderList intstance;
+	private static OrderList orderlist;
 	
 	private OrderList() {
 		orderList = new ArrayList<Order>();
 	}
 	
 	public static OrderList getInstance() {
-		if (intstance == null)
-			intstance = new OrderList();
-		return intstance;
+		if (orderlist == null)
+			orderlist = new OrderList();
+		return orderlist;
 	}
 	
-
+//	public ArrayList<Order> getOrderList() {
+//		String message= "";
+//		try {
+//		 return orderList;
+//		}
+//		catch (NullPointerException e){
+//			 message = e.getMessage() + "Could not get orderList, value is null";
+//			 System.out.println(message);
+//		}
+//		return orderList;
+//		 
+//	}
 	public Iterable<Order> getAllOrders() {
 		return orderList;
 	}
-	/**
-	 * add order to list - synchronized as accessed by staff
-	 * @param order
-	 */
-	public synchronized void addOrder(Order order)
+	
+	public void addOrder(Order order)
 	{
 	
-		
+		orderList.add(order);
 		if (order == null) {
 			throw new IllegalStateException("Cannot add order to orderList as order object has value null");
 		}
-		else if (!(order instanceof Order))
+		if (!(order instanceof Order))
 		{
 			throw new IllegalArgumentException("Cannot add order to orderList as order object is not of Order type");
-		} else {
-			orderList.add(order);
 		}
-		
 	}
-	/**
-	 * remove order - synchronized
-	 * @param order
-	 */
 	
-	public synchronized void removeOrder(Order order)
+	public void removeOrder(Order order)
 	{
 		
-		
+		orderList.remove(order);
 		if (orderList.size() == 0)
 		{
 			throw new IndexOutOfBoundsException("Cannot remove order, orderList is empty");
-		}else {
-			orderList.remove(order);
 		}
 	}
 	
-	public  synchronized int totalSales() {
+	public int totalSales() {
 		return orderList.size();
 	}
-	
-	public  synchronized double totalIncome() {
+	public double totalIncome() {
 		double total = 0;
 		for(Order order : orderList) {
 			total += order.getCost();
@@ -96,6 +94,8 @@ public class OrderList {
 			report += String.format("%,.2f", order.getDiscountAmount());
 			report += "/";
 			report += order.getStaffID();
+			report += "/";
+			report += order.getOnline();
 			report += "\n";
 		}
 
@@ -110,10 +110,18 @@ public class OrderList {
 		//	throw new IndexOutOfBoundsException("Cannot generate order report, orderList is empty");
 		//}
 		
-	public synchronized int getNextOrderID() {
+	public synchronized int getNextOrderID()
+	{
 		int size = orderList.size() - 1;
 		return orderList.get(size).getOrderID()+1;
 	}
+
+	public boolean getOnlineOrder()
+	{
+		return false;
+	}
+	
+	
 	
 	
 }

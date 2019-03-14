@@ -20,9 +20,12 @@ public class Order{
 	private double cost;
 	private double discountAmount;
 	private int staffID;
+	private boolean online;
 
 	
-	public Order(int orderID, int customerID, Timestamp timestamp, String itemID, double cost, double discountAmount, int staffID)
+	public Order(int orderID, int customerID, Timestamp timestamp, String itemID, 
+			double cost, double discountAmount, int staffID, boolean online)
+	
 	{
 		try {
 		this.orderID = orderID;
@@ -32,6 +35,7 @@ public class Order{
 		this.cost = cost;
 		this.discountAmount = discountAmount;
 		this.staffID = staffID;
+		this.online = online;
 		}
 		catch (IllegalArgumentException e) 
 		{
@@ -42,6 +46,8 @@ public class Order{
 			System.out.println(e.getMessage());
 		}
 	}
+	
+	
 	public int getStaffID() {
 		return this.staffID;
 	}
@@ -105,5 +111,16 @@ public class Order{
 	{
 		this.discountAmount = discountAmount;
 	}
+	
+	public void setOnline(boolean online)  
+	{
+		this.online = online;
+	}
+	
+	public boolean getOnline() 
+	{
+		return online;
+	}
+	
 	
 }	
