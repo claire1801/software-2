@@ -1,6 +1,7 @@
 package staff;
 
 
+import main.Log;
 import shop.Basket;
 import shop.Queue;
 
@@ -28,14 +29,9 @@ public class Staff implements Runnable {
 	public Staff(int StaffID, String firstname, String lastname) {
 		this.StaffID  = StaffID;
 		this.firstName = firstname;
-		this.lastName = lastname;				
-	}
-	
-	public Staff(int StaffID, String firstname, String lastname, Queue queue) {
-		this.StaffID  = StaffID;
-		this.firstName = firstname;
-		this.lastName = lastname;
-		this.queue = queue;
+		this.lastName = lastname;	
+		
+		queue = Queue.getInstance();
 	}
 	
 	public void run() {
@@ -44,8 +40,9 @@ public class Staff implements Runnable {
 			try {
 				 System.out.println ("Thread " + Thread.currentThread().getId() + " is running");
 				processOrder();
+				unprocessedOrder.getFinalBill();
 				unprocessedOrder.confirmedAndPaid();
-				updateLog2();
+				
 				
 			} catch (InterruptedException e) {
 				
@@ -57,7 +54,10 @@ public class Staff implements Runnable {
 	private void processOrder() throws InterruptedException {
 		unprocessedOrder = queue.getNextInQueue();
 		updateLog();
+		Log.writeToFile("Customer ID: " + unprocessedOrder.getCurrentCustomerID() + " is being processed by Staff " + StaffID);
 		Thread.sleep(orderTime);
+		Log.writeToFile("Customer ID: " + unprocessedOrder.getCurrentCustomerID() + " order is complete");
+		updateLog2();
 	}
 	
 	
