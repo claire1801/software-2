@@ -34,13 +34,6 @@ public class Staff implements Runnable {
 		queue = Queue.getInstance();
 	}
 	
-	/*public Staff(int StaffID, String firstname, String lastname, Queue queue) {
-		this.StaffID  = StaffID;
-		this.firstName = firstname;
-		this.lastName = lastname;
-		this.queue = queue;
-	}*/
-	
 	public void run() {
 		
 		while(!queue.queueEmpty()) {
