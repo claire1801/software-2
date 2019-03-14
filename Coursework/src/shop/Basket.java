@@ -38,6 +38,7 @@ public class Basket {
 	private int currentStaffID; // should this be added to the constructor, i.e. will we know staff/customer before basket screen
 	private int currentCustomerID; // will we need more than one basket ever? probably not
 	private static final double MEAL_DEAL_DISCOUNT = 1.5;
+	private boolean online = false;
 	
 
 
@@ -210,6 +211,17 @@ public class Basket {
 	public int getCurrentCustomerID() {
 		return this.currentCustomerID;
 	}
+	
+	public boolean getOnline() 
+	{
+		return this.online;
+	}
+	
+	public void setOnline(boolean online)  
+	{
+		this.online = online;
+	}
+
 	
 
 	

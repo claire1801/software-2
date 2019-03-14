@@ -68,7 +68,13 @@ public class Queue {
 	 * @param newBasket - the basket to add
 	 */
 	public synchronized void addToQueue(Basket newBasket) {
-		this.queue.add(newBasket);
+		if (newBasket.getOnline() == true) {
+			this.queue.add(0, newBasket);
+		}else {
+			this.queue.add(newBasket);
+		}
+
+		
 	}
 	/**
 	 * returns the basket (customer) at the beginning of the queue ( index 0) and removes it from the queue. This method is synchronized
@@ -112,6 +118,12 @@ public class Queue {
 		if(cl.customerExists(customerId)== false) {
 			customerId = 1;
 		}
+		randomNumber = Math.random();
+		if (randomNumber <= 0.1) { 
+			basket.setOnline(true); }
+			else { basket.setOnline(false); }
+
+		
 		basket.setCurrentCustomerID(customerId);
 	//	System.out.println(numberOfItems);
 		for(int x = 0; x < numberOfItems; x++) {

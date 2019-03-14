@@ -2,6 +2,8 @@ package staff;
 
 
 import main.Log;
+import main.Main;
+
 import shop.Basket;
 import shop.Queue;
 
@@ -29,7 +31,9 @@ public class Staff implements Runnable {
 	private boolean serving = false;
 	
 	
-	private static final int orderTime = 5000; //milliseconds
+
+	//private static final int orderTime = 5000; //milliseconds
+
 	// could possibly add wage, no. of sales etc.
 	
 	
@@ -61,8 +65,11 @@ public class Staff implements Runnable {
 	private void processOrder() throws InterruptedException {
 		unprocessedOrder = queue.getNextInQueue();
 		updateLog();
+
+		System.out.println("online: " + unprocessedOrder.getOnline());
 		Log.writeToFile("Customer ID: " + unprocessedOrder.getCurrentCustomerID() + " is being processed by Staff " + StaffID);
-		Thread.sleep(orderTime);
+		Thread.sleep(Main.sched.Speed * 500);
+
 		Log.writeToFile("Customer ID: " + unprocessedOrder.getCurrentCustomerID() + " order is complete");
 		updateLog2();
 	}
