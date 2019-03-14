@@ -20,7 +20,6 @@ import menu.MenuList;
 import menu.Snacks;
 import orders.Order;
 import orders.OrderList;
-import shop.Queue;
 import staff.*;
 
 /**
@@ -116,6 +115,7 @@ public class FileReadIn {
 			int customerID = Integer.parseInt(order[1]);
 			int orderID = Integer.parseInt(order[0]);
 			int staffId = Integer.parseInt(order[6]);
+			boolean online = Boolean.parseBoolean(order[7]);
 			
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
 			Date parsedDate = dateFormat.parse(order[2]);
@@ -123,7 +123,7 @@ public class FileReadIn {
 			
 			//System.out.println(timestamp);
 			
-			Order newOrder = new Order(orderID,customerID, timestamp, order[3],cost,discount,staffId);
+			Order newOrder = new Order(orderID,customerID, timestamp, order[3],cost,discount,staffId,online);
 			orderList.addOrder(newOrder);
 		}
 		scanner.close();
@@ -139,7 +139,6 @@ public class FileReadIn {
 	public static void readStaff(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
-		//Queue queue = Queue.getInstance();
 		
 		StaffList staffList = StaffList.getInstance();
 		
@@ -157,7 +156,6 @@ public class FileReadIn {
 			Staff staffmember = new Staff(ID,names[0],names[lastIndex]);
 			staffList.addStaffToList(staffmember);
 		}
-		//System.out.println("start size" + staffList.size());
 		scanner.close();
 		
 	}
@@ -185,10 +183,6 @@ public class FileReadIn {
 			}
 			int ID = Integer.parseInt(customer[1]);
 			int noDrinks = Integer.parseInt(customer[2]);
-			if(noDrinks > 4) {
-				noDrinks = 1;
-				System.out.println("to many drinks " + customer[0]);
-			}
 			String member = customer[3];
 			MembershipType memType;
 			if(member.charAt(0) == 'E') {

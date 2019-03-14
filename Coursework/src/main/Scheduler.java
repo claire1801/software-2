@@ -62,12 +62,15 @@ public class Scheduler implements Runnable {
 			}
 			queue.addRandomCustomer();
 			try {
-				Thread.sleep(Speed * 500);
+				Thread.sleep(Speed * 100);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			
 		}
 	}
-
+	
 }
+	
+	
+	
