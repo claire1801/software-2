@@ -6,6 +6,7 @@ import java.util.Random;
 import customers.CustomerList;
 import menu.MenuItems;
 import menu.MenuList;
+import main.Log;
 import orders.Order;
 import orders.OrderList;
 /**
@@ -118,7 +119,7 @@ public class Queue {
 			MenuItems item = ml.getRandomItem();
 			basket.addItemToUnconfirmedOrder(item);
 		}
-			
+		Log.writeToFile("Customer " + basket.getCurrentCustomerID() + " was added to the queue");	
 		this.queue.add(basket);
 		System.out.println(this.numberInQueue());
 	
