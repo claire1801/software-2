@@ -19,8 +19,9 @@ class TestCustomerList {
 	public void setup() throws InvalidCustomerIDException {
 		Customer newCustomer = new Customer(1,MembershipType.MEMBER,1,"sam");
     	//list.put(1, newCustomer);
-        b = new CustomerList();
-        b.addCustomer(1, newCustomer);
+       // b = new CustomerList();
+      //  b.addCustomer(1, newCustomer);
+		CustomerList.getInstance().addCustomer(1, newCustomer);
 	}
 	 @Test
 	    public void test_report() {

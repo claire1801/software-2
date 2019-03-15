@@ -15,41 +15,46 @@ class OrderListTest {
 	
 	Order order = new Order(1, 100, timestamp, "FOOD123", 2.00, 0.20, 1);
 	
-	OrderList orderList = new OrderList();
+	//OrderList orderList = new OrderList();
 	
 
 	@BeforeEach
 	public void setup() {
-	orderList = new OrderList();
-	orderList.addOrder(order);
+	//orderList = new OrderList();
+	//orderList.addOrder(order);
+		OrderList.getInstance().addOrder(order);
 	}
 
 	@Test
 	void testAddOrder() {
-	assertTrue(orderList.getOrderList().contains(order));
+	//assertTrue(orderList.getOrderList().contains(order));
+		assertTrue(OrderList.getInstance().getAllOrders().iterator().equals(order));
 	}
 
 	@Test
 	void testRemoveOrder() {
 		Order order2 = new Order(0002, 101, timestamp, "DRINK123", 3.0, 0.2, 2);
-		orderList.removeOrder(order2);
-		assertFalse(orderList.getOrderList().contains(order2));
+		OrderList.getInstance().removeOrder(order2);
+		//assertFalse(orderList.getOrderList().contains(order2));
+		assertFalse(OrderList.getInstance().getAllOrders().iterator().equals(order));
 	}
 
 	@Test
 	void testTotalSales() {
-		assertEquals(1, orderList.getOrderList().size());
+		//assertEquals(1, orderList.getOrderList().size());
+		assertEquals(1,OrderList.getInstance().totalSales());
 	}
 
 	@Test
 	void testTotalIncome() {
-		assertEquals(2, orderList.totalIncome());
+		//assertEquals(2, orderList.totalIncome());
+		assertEquals(2,OrderList.getInstance().totalIncome());
 	}
 
 	@Test
 	void testWriteReport(){
 		String tstamp1 = timestamp.toString();
-		String report = orderList.writeReport();
+		String report = OrderList.getInstance().writeReport();
 		report = report.substring(0, 49);
 		assertEquals("1/100/" + tstamp1 + "/FOOD123/2.00/0.20/1", report);
 	}

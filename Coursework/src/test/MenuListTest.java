@@ -24,12 +24,12 @@ class MenuListTest {
 
 	@BeforeAll
 	static void setUpBeforeClass_testsConstructor() throws Exception {
-		menuList = new MenuList();;
+		//menuList = new MenuList();;
 		String key = "DRINK009";
 		Drinks drink = new Drinks("drink 009",key,1.0,"descriptionDrink","alergensDrink");
 		//Snacks snack = new Snacks("nameSnack","idSnack",2.0,"descriptionSnack","alergensSnack");
 		//Meals meal = new Meals("nameMeal","idMeal",3.0,"descriptionMeal","alergensMeal");
-		menuList.addItem(key, drink);
+		MenuList.getInstance().addItem(key, drink);
 		//menuList = new MenuList(menu_input);
 	}
 
@@ -99,10 +99,11 @@ class MenuListTest {
 	void testWriteReport() throws InvalidItemIdentifierException {
 		String key = "DRINK001";
 		Drinks drink = new Drinks("nameDrink",key,1.0,"descriptionDrink","alergensDrink");
-		MenuList menu = new MenuList();
-		menu.addItem(key, drink);		
-		System.out.println(menu.writeReport());
-		assertTrue(menu.writeReport().contains("nameDrin"));
+		//MenuList menu = new MenuList();
+		//menu.addItem(key, drink);	
+		MenuList.getInstance().addItem(key, drink);
+		System.out.println(MenuList.getInstance().writeReport());
+		assertTrue(MenuList.getInstance().writeReport().contains("nameDrink"));
 	}
 
 }
