@@ -26,6 +26,7 @@ import menu.Drinks;
 import menu.Meals;
 import menu.MenuItems;
 import menu.Snacks;
+import orders.Order;
 import orders.OrderList;
 import shop.Basket;
 
@@ -69,6 +70,8 @@ class Basket_test {
 	private MenuItems item4;
 	private int i;
 	private Customer customer1;
+	Timestamp timestamp = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
+	Order order = new Order(1, 100, timestamp, "FOOD123", 2.00, 0.20, 1);
 	@BeforeEach
 	public void setUp() {
 		i = 10;
@@ -201,13 +204,14 @@ class Basket_test {
 			{
 				e.printStackTrace();
 			}
+		OrderList.getInstance().addOrder(order);
 		CustomerList.getInstance().addCustomer(42, customer42);
 		basket.setCurrentCustomerID(42);
 		basket.setCurrentStaffID(001);
 		basket.addItemToUnconfirmedOrder(item1);
 	    basket.confirmedAndPaid();
 		OrderList.getInstance().totalSales();
-		assertEquals(1,OrderList.getInstance().totalSales());
+		assertEquals(2,OrderList.getInstance().totalSales());
 		
 		
 	}
