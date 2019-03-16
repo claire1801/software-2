@@ -83,7 +83,7 @@ public class Staff implements Runnable {
 	
 	
 	public String updateLog() {
-		//System.out.println("Customer ID: " + CurrentCustomerID +  " order is being processed by Server: " + StaffID +" ("+ this.firstName +" " +this.lastName + ") This order contains " + unprocessedOrder.getItemsInBasket());
+		System.out.println("Customer ID: " + CurrentCustomerID +  " order is being processed by Server: " + StaffID +" ("+ this.firstName +" " +this.lastName + ") This order contains " + unprocessedOrder.getItemsInBasket());
 		String order = new String();
 		order += "Customer ID: " + CurrentCustomerID +  " order is being processed by Server: " + StaffID +" ("+ this.firstName +" " +this.lastName + ") \n"; 
 		order += "This order contains items: " + unprocessedOrder.getItemsInBasketString() + "\n";
@@ -92,7 +92,7 @@ public class Staff implements Runnable {
 	
 	
 	public String updateLog2() {
-		//System.out.println("Customer ID: " + CurrentCustomerID +  " has been processed");
+		System.out.println("Customer ID: " + CurrentCustomerID +  " has been processed");
 		String order = new String();
 		order += "The order for Customer: " + CurrentCustomerID + " has been processed by: " + StaffID;
 		return order;
