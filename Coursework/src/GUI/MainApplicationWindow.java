@@ -18,6 +18,7 @@ import javax.swing.border.Border;
 import customers.CustomerList;
 import exceptions.NoStaffAvailableException;
 import main.Main;
+import main.Observer;
 import menu.MenuItems;
 import menu.MenuList;
 import shop.Queue;
@@ -31,7 +32,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public class MainApplicationWindow extends JFrame {
+public class MainApplicationWindow extends JFrame implements Observer {
 
 	private JFrame frame;
 	private JList list;
@@ -42,8 +43,23 @@ public class MainApplicationWindow extends JFrame {
 	private String[] ID ;
 	private static final Border border = BorderFactory.createLineBorder(Color.BLACK);
 	
+	private JTextArea queueDetails;
+	private JTextArea staffOnDuty;
 	
 	private static JPanel serverActivityPanel;
+	
+	
+	
+	
+	public void update() {
+		
+		String queueDetailsMessage = Queue.getInstance().getQueueDetails();		
+		queueDetails.setText(queueDetailsMessage);
+		
+		String staffOnDutyDetails = StaffList.getInstance().onDutyList();
+		staffOnDuty.setText(staffOnDutyDetails);
+		
+	}
 
 
 	/**
@@ -94,6 +110,8 @@ public class MainApplicationWindow extends JFrame {
 		setBounds(0, 0, screenSize.width, screenSize.height-200);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
+		StaffList.getInstance().registerObserver(this);
+//		Queue.getInstance().registerObserver(this);
 		
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
@@ -279,7 +297,7 @@ public class MainApplicationWindow extends JFrame {
 		/**
 		 *  Display details of current customer queue 	
 		 */
-		JTextArea queueDetails = new JTextArea();
+		queueDetails = new JTextArea();
 		queueDetails.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 		queueDetails.setText(Queue.getInstance().getQueueDetails());
 		JScrollPane queueScroll = new JScrollPane(queueDetails);
@@ -291,7 +309,7 @@ public class MainApplicationWindow extends JFrame {
 		/**
 		 *  Display details of staff on duty
 		 */
-		JTextArea staffOnDuty = new JTextArea();
+		staffOnDuty = new JTextArea();
 		staffOnDuty.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 		staffOnDuty.setText(StaffList.getInstance().onDutyList());
 		JScrollPane staffOnDutyScroll = new JScrollPane(staffOnDuty);
@@ -385,7 +403,6 @@ public class MainApplicationWindow extends JFrame {
 					newstaff =  Main.sched.addServerStaff();
 					addBox(newstaff);
 				} catch (NoStaffAvailableException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				
@@ -445,6 +462,8 @@ public class MainApplicationWindow extends JFrame {
 		btnRemoveServer.setBounds(1303, 566, 117, 29);
 		getContentPane().add(btnRemoveServer);
 
+		
+		update();
 	}
 	
 	
