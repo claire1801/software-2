@@ -408,8 +408,9 @@ public class MainApplicationWindow extends JFrame implements Observer {
 				Staff newstaff;
 				try {
 					newstaff =  Main.sched.addServerStaff();
-					
-					addBox(newstaff);
+					if(newstaff != null) {
+						addBox(newstaff);
+					}
 				} catch (NoStaffAvailableException e1) {
 					e1.printStackTrace();
 				}

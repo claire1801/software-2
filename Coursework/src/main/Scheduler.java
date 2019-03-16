@@ -59,15 +59,20 @@ public class Scheduler implements Runnable {
 
 	
 	public synchronized  Staff addServerStaff() throws NoStaffAvailableException {
-		staffCounter++;
-		Staff newServerStaff = StaffList.getInstance().getNextAvailableServer();
-		//staff.add(newServerStaff);
-		newServerStaff.isServing(true);
-		Thread servingStaffThread = new Thread(newServerStaff);
-		servingStaffThread.start();
-		this.addStaffThread(newServerStaff, servingStaffThread);
-		System.out.println("new thread with server: " + newServerStaff.getStaffID());
-		return newServerStaff;
+		StaffList sl = StaffList.getInstance();
+		if(staffCounter < sl.size() ) {
+			staffCounter++;
+			Staff newServerStaff = sl.getNextAvailableServer();
+			//staff.add(newServerStaff);
+			newServerStaff.isServing(true);
+			Thread servingStaffThread = new Thread(newServerStaff);
+			servingStaffThread.start();
+			this.addStaffThread(newServerStaff, servingStaffThread);
+			System.out.println("new thread with server: " + newServerStaff.getStaffID());
+			return newServerStaff;
+		}
+		return null;
+
 	}
 	
 	
@@ -78,7 +83,7 @@ public class Scheduler implements Runnable {
 		if(this.staff.size() != 0) {
 			this.staff.get(staff.size()-1).isServing(false);
 			this.removeStaffThread(staff.size()-1);
-			System.out.println("heelo");
+			//System.out.println("heelo");
 			//this.staff.remove(staff.size()-1);
 			staffCounter--;
 		}

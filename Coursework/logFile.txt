@@ -7564,3 +7564,213 @@
 2019-03-16 15:59:10.401 Customer ID: 35 order is complete
 2019-03-16 15:59:10.401 Customer ID: 3 order is complete
 2019-03-16 15:59:10.401 Customer ID: 25 order is complete
+2019-03-16 16:08:03.037 Customer 48 was added to the queue
+2019-03-16 16:08:03.037 Customer 65 was added to the queue
+2019-03-16 16:08:03.037 Customer 10 was added to the queue
+2019-03-16 16:08:03.037 Customer 26 was added to the queue
+2019-03-16 16:08:03.037 Customer 55 was added to the queue
+2019-03-16 16:08:03.037 Customer 5 was added to the queue
+2019-03-16 16:08:03.037 Customer 87 was added to the queue
+2019-03-16 16:08:03.037 Customer 83 was added to the queue
+2019-03-16 16:08:03.037 Customer 92 was added to the queue
+2019-03-16 16:08:03.037 Customer 9 was added to the queue
+2019-03-16 16:08:03.037 Customer 54 was added to the queue
+2019-03-16 16:08:03.037 Customer 73 was added to the queue
+2019-03-16 16:08:03.037 Customer 28 was added to the queue
+2019-03-16 16:08:03.037 Customer 99 was added to the queue
+2019-03-16 16:08:03.037 Customer 24 was added to the queue
+2019-03-16 16:08:03.037 Customer 14 was added to the queue
+2019-03-16 16:08:03.037 Customer 30 was added to the queue
+2019-03-16 16:08:03.037 Customer 25 was added to the queue
+2019-03-16 16:08:03.037 Customer 83 was added to the queue
+2019-03-16 16:08:03.037 Customer 52 was added to the queue
+2019-03-16 16:08:03.037 Customer 98 was added to the queue
+2019-03-16 16:08:03.037 Customer 36 was added to the queue
+2019-03-16 16:08:03.037 Customer 2 was added to the queue
+2019-03-16 16:08:03.037 Customer 25 was added to the queue
+2019-03-16 16:08:03.037 Customer 90 was added to the queue
+2019-03-16 16:08:03.037 Customer 21 was added to the queue
+2019-03-16 16:08:03.037 Customer 63 was added to the queue
+2019-03-16 16:08:03.037 Customer 80 was added to the queue
+2019-03-16 16:08:03.037 Customer 22 was added to the queue
+2019-03-16 16:08:03.037 Customer 42 was added to the queue
+2019-03-16 16:08:03.037 Customer ID: 22 is being processed by Staff 12
+2019-03-16 16:08:03.037 Customer 39 was added to the queue
+2019-03-16 16:08:03.037 Customer ID: 83 is being processed by Staff 11
+2019-03-16 16:08:03.037 Customer ID: 22 order is complete
+2019-03-16 16:08:03.037 Customer ID: 9 is being processed by Staff 12
+2019-03-16 16:08:03.037 Customer ID: 83 order is complete
+2019-03-16 16:08:03.037 Customer ID: 87 is being processed by Staff 11
+2019-03-16 16:08:03.037 Customer ID: 80 is being processed by Staff 10
+2019-03-16 16:08:03.037 Customer ID: 83 is being processed by Staff 9
+2019-03-16 16:08:03.037 Customer ID: 87 order is complete
+2019-03-16 16:08:03.037 Customer ID: 56 is being processed by Staff 11
+2019-03-16 16:08:03.037 Customer ID: 9 order is complete
+2019-03-16 16:08:03.037 Customer ID: 5 is being processed by Staff 12
+2019-03-16 16:08:03.037 Customer ID: 50 is being processed by Staff 8
+2019-03-16 16:08:03.037 Customer ID: 85 is being processed by Staff 7
+2019-03-16 16:08:03.037 Customer ID: 80 order is complete
+2019-03-16 16:08:03.037 Customer ID: 76 is being processed by Staff 10
+2019-03-16 16:08:03.037 Customer ID: 98 is being processed by Staff 6
+2019-03-16 16:08:03.037 Customer ID: 21 is being processed by Staff 5
+2019-03-16 16:08:03.037 Customer ID: 83 order is complete
+2019-03-16 16:08:03.037 Customer ID: 1 is being processed by Staff 9
+2019-03-16 16:08:03.037 Customer ID: 51 is being processed by Staff 4
+2019-03-16 16:08:03.037 Customer ID: 56 order is complete
+2019-03-16 16:08:03.037 Customer ID: 83 is being processed by Staff 11
+2019-03-16 16:08:03.037 Customer ID: 5 order is complete
+2019-03-16 16:08:03.037 Customer ID: 66 is being processed by Staff 12
+2019-03-16 16:08:03.037 Customer ID: 50 order is complete
+2019-03-16 16:08:03.037 Customer ID: 82 is being processed by Staff 8
+2019-03-16 16:08:03.037 Customer ID: 89 is being processed by Staff 3
+2019-03-16 16:08:03.037 Customer ID: 85 order is complete
+2019-03-16 16:08:03.037 Customer ID: 73 is being processed by Staff 7
+2019-03-16 16:08:03.037 Customer ID: 81 is being processed by Staff 2
+2019-03-16 16:08:03.037 Customer ID: 76 order is complete
+2019-03-16 16:08:03.037 Customer ID: 33 is being processed by Staff 10
+2019-03-16 16:08:03.037 Customer ID: 98 order is complete
+2019-03-16 16:08:03.037 Customer ID: 45 is being processed by Staff 6
+2019-03-16 16:08:03.037 Customer ID: 21 order is complete
+2019-03-16 16:08:03.037 Customer ID: 74 is being processed by Staff 5
+2019-03-16 16:08:03.037 Customer ID: 2 is being processed by Staff 1
+2019-03-16 16:08:03.037 Customer ID: 1 order is complete
+2019-03-16 16:08:03.037 Customer ID: 51 order is complete
+2019-03-16 16:08:03.037 Customer ID: 69 is being processed by Staff 9
+2019-03-16 16:08:03.037 Customer ID: 49 is being processed by Staff 4
+2019-03-16 16:08:03.037 Customer ID: 66 order is complete
+2019-03-16 16:08:03.037 Customer ID: 44 is being processed by Staff 12
+2019-03-16 16:08:03.037 Customer ID: 83 order is complete
+2019-03-16 16:08:03.037 Customer ID: 74 is being processed by Staff 11
+2019-03-16 16:08:03.037 Customer ID: 82 order is complete
+2019-03-16 16:08:03.037 Customer ID: 14 is being processed by Staff 8
+2019-03-16 16:08:03.037 Customer ID: 89 order is complete
+2019-03-16 16:08:03.037 Customer ID: 67 is being processed by Staff 3
+2019-03-16 16:08:03.037 Customer ID: 73 order is complete
+2019-03-16 16:08:03.037 Customer ID: 68 is being processed by Staff 7
+2019-03-16 16:08:03.037 Customer ID: 33 order is complete
+2019-03-16 16:08:03.037 Customer ID: 31 is being processed by Staff 10
+2019-03-16 16:08:03.037 Customer ID: 81 order is complete
+2019-03-16 16:08:03.037 Customer ID: 77 is being processed by Staff 2
+2019-03-16 16:08:03.037 Customer ID: 45 order is complete
+2019-03-16 16:08:03.037 Customer ID: 14 is being processed by Staff 6
+2019-03-16 16:08:03.037 Customer ID: 2 order is complete
+2019-03-16 16:08:03.037 Customer ID: 89 is being processed by Staff 1
+2019-03-16 16:08:03.037 Customer ID: 74 order is complete
+2019-03-16 16:08:03.037 Customer ID: 46 is being processed by Staff 5
+2019-03-16 16:08:03.037 Customer ID: 69 order is complete
+2019-03-16 16:08:03.037 Customer ID: 13 is being processed by Staff 9
+2019-03-16 16:08:03.037 Customer ID: 49 order is complete
+2019-03-16 16:08:03.037 Customer ID: 7 is being processed by Staff 4
+2019-03-16 16:08:03.037 Customer ID: 74 order is complete
+2019-03-16 16:08:03.037 Customer ID: 44 order is complete
+2019-03-16 16:08:03.037 Customer ID: 62 is being processed by Staff 11
+2019-03-16 16:08:03.037 Customer ID: 13 is being processed by Staff 12
+2019-03-16 16:08:03.037 Customer ID: 14 order is complete
+2019-03-16 16:08:03.037 Customer ID: 69 is being processed by Staff 8
+2019-03-16 16:08:03.037 Customer ID: 68 order is complete
+2019-03-16 16:08:03.037 Customer ID: 46 is being processed by Staff 7
+2019-03-16 16:08:03.037 Customer ID: 67 order is complete
+2019-03-16 16:08:03.037 Customer ID: 12 is being processed by Staff 3
+2019-03-16 16:08:03.037 Customer ID: 31 order is complete
+2019-03-16 16:08:03.037 Customer ID: 83 is being processed by Staff 10
+2019-03-16 16:08:03.037 Customer ID: 77 order is complete
+2019-03-16 16:08:03.037 Customer ID: 56 is being processed by Staff 2
+2019-03-16 16:08:03.037 Customer ID: 14 order is complete
+2019-03-16 16:08:03.037 Customer 56 was added to the queue
+2019-03-16 16:08:03.037 Customer ID: 5 is being processed by Staff 6
+2019-03-16 16:08:03.037 Customer ID: 89 order is complete
+2019-03-16 16:08:03.037 Customer ID: 56 is being processed by Staff 1
+2019-03-16 16:08:03.037 Customer ID: 46 order is complete
+2019-03-16 16:08:03.037 Customer ID: 50 is being processed by Staff 5
+2019-03-16 16:08:03.037 Customer ID: 13 order is complete
+2019-03-16 16:08:03.037 Customer ID: 85 is being processed by Staff 9
+2019-03-16 16:08:03.037 Customer ID: 7 order is complete
+2019-03-16 16:08:03.037 Customer ID: 62 order is complete
+2019-03-16 16:08:03.037 Customer ID: 76 is being processed by Staff 4
+2019-03-16 16:08:03.037 Customer ID: 98 is being processed by Staff 11
+2019-03-16 16:08:03.037 Customer ID: 13 order is complete
+2019-03-16 16:08:03.037 Customer ID: 21 is being processed by Staff 12
+2019-03-16 16:08:03.037 Customer ID: 69 order is complete
+2019-03-16 16:08:03.037 Customer ID: 1 is being processed by Staff 8
+2019-03-16 16:08:03.037 Customer ID: 12 order is complete
+2019-03-16 16:08:03.037 Customer ID: 51 is being processed by Staff 3
+2019-03-16 16:08:03.037 Customer ID: 46 order is complete
+2019-03-16 16:08:03.037 Customer ID: 66 is being processed by Staff 7
+2019-03-16 16:08:03.037 Customer ID: 83 order is complete
+2019-03-16 16:08:03.037 Customer ID: 83 is being processed by Staff 10
+2019-03-16 16:08:03.037 Customer ID: 56 order is complete
+2019-03-16 16:08:03.037 Customer ID: 82 is being processed by Staff 2
+2019-03-16 16:08:03.037 Customer ID: 56 order is complete
+2019-03-16 16:08:03.037 Customer ID: 5 order is complete
+2019-03-16 16:08:03.037 Customer ID: 73 is being processed by Staff 6
+2019-03-16 16:08:03.037 Customer ID: 50 order is complete
+2019-03-16 16:08:03.037 Customer ID: 89 is being processed by Staff 5
+2019-03-16 16:08:03.037 Customer ID: 85 order is complete
+2019-03-16 16:08:03.037 Customer ID: 81 is being processed by Staff 9
+2019-03-16 16:08:03.037 Customer ID: 21 order is complete
+2019-03-16 16:08:03.037 Customer ID: 33 is being processed by Staff 12
+2019-03-16 16:08:03.037 Customer ID: 76 order is complete
+2019-03-16 16:08:03.037 Customer ID: 45 is being processed by Staff 4
+2019-03-16 16:08:03.037 Customer ID: 98 order is complete
+2019-03-16 16:08:03.037 Customer ID: 74 is being processed by Staff 11
+2019-03-16 16:08:03.037 Customer ID: 1 order is complete
+2019-03-16 16:08:03.037 Customer ID: 2 is being processed by Staff 8
+2019-03-16 16:08:03.037 Customer ID: 51 order is complete
+2019-03-16 16:08:03.037 Customer ID: 66 order is complete
+2019-03-16 16:08:03.037 Customer ID: 69 is being processed by Staff 7
+2019-03-16 16:08:03.037 Customer ID: 83 order is complete
+2019-03-16 16:08:03.037 Customer ID: 49 is being processed by Staff 10
+2019-03-16 16:08:03.037 Customer ID: 82 order is complete
+2019-03-16 16:08:03.037 Customer ID: 73 order is complete
+2019-03-16 16:08:03.037 Customer ID: 89 order is complete
+2019-03-16 16:08:03.037 Customer ID: 45 order is complete
+2019-03-16 16:08:03.037 Customer ID: 33 order is complete
+2019-03-16 16:08:03.037 Customer ID: 44 is being processed by Staff 12
+2019-03-16 16:08:03.037 Customer ID: 81 order is complete
+2019-03-16 16:08:03.037 Customer ID: 74 is being processed by Staff 9
+2019-03-16 16:08:03.037 Customer ID: 74 order is complete
+2019-03-16 16:08:03.037 Customer ID: 14 is being processed by Staff 11
+2019-03-16 16:08:03.037 Customer ID: 2 order is complete
+2019-03-16 16:08:03.037 Customer ID: 69 order is complete
+2019-03-16 16:08:03.037 Customer ID: 49 order is complete
+2019-03-16 16:08:03.037 Customer ID: 67 is being processed by Staff 10
+2019-03-16 16:08:03.037 Customer ID: 44 order is complete
+2019-03-16 16:08:03.037 Customer ID: 68 is being processed by Staff 12
+2019-03-16 16:08:03.037 Customer ID: 14 order is complete
+2019-03-16 16:08:03.037 Customer ID: 74 order is complete
+2019-03-16 16:08:03.037 Customer ID: 31 is being processed by Staff 11
+2019-03-16 16:08:03.037 Customer ID: 67 order is complete
+2019-03-16 16:08:03.037 Customer ID: 31 order is complete
+2019-03-16 16:08:03.037 Customer ID: 77 is being processed by Staff 11
+2019-03-16 16:08:03.037 Customer ID: 68 order is complete
+2019-03-16 16:08:03.037 Customer ID: 89 is being processed by Staff 12
+2019-03-16 16:08:03.037 Customer ID: 77 order is complete
+2019-03-16 16:08:03.037 Customer ID: 14 is being processed by Staff 11
+2019-03-16 16:08:03.037 Customer ID: 46 is being processed by Staff 10
+2019-03-16 16:08:03.037 Customer 59 was added to the queue
+2019-03-16 16:08:03.037 Customer ID: 89 order is complete
+2019-03-16 16:08:03.037 Customer ID: 13 is being processed by Staff 12
+2019-03-16 16:08:03.037 Customer ID: 14 order is complete
+2019-03-16 16:08:03.037 Customer ID: 62 is being processed by Staff 11
+2019-03-16 16:08:03.037 Customer ID: 46 order is complete
+2019-03-16 16:08:03.037 Customer ID: 7 is being processed by Staff 10
+2019-03-16 16:08:03.037 Customer ID: 13 order is complete
+2019-03-16 16:08:03.037 Customer ID: 13 is being processed by Staff 12
+2019-03-16 16:08:03.037 Customer ID: 62 order is complete
+2019-03-16 16:08:03.037 Customer ID: 69 is being processed by Staff 11
+2019-03-16 16:08:03.037 Customer ID: 7 order is complete
+2019-03-16 16:08:03.037 Customer ID: 70 is being processed by Staff 10
+2019-03-16 16:08:03.037 Customer ID: 13 order is complete
+2019-03-16 16:08:03.037 Customer ID: 85 is being processed by Staff 12
+2019-03-16 16:08:03.037 Customer ID: 69 order is complete
+2019-03-16 16:08:03.037 Customer ID: 1 is being processed by Staff 11
+2019-03-16 16:08:03.037 Customer ID: 70 order is complete
+2019-03-16 16:08:03.037 Customer ID: 70 is being processed by Staff 10
+2019-03-16 16:08:03.037 Customer ID: 85 order is complete
+2019-03-16 16:08:03.037 Customer ID: 2 is being processed by Staff 12
+2019-03-16 16:08:03.037 Customer ID: 1 order is complete
+2019-03-16 16:08:03.037 Customer ID: 94 is being processed by Staff 11
+2019-03-16 16:08:03.037 Customer ID: 70 order is complete
+2019-03-16 16:08:03.037 Customer ID: 81 is being processed by Staff 10
+2019-03-16 16:08:03.037 Customer ID: 2 order is complete
+2019-03-16 16:08:03.037 Customer ID: 64 is being processed by Staff 12
