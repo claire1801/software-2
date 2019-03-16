@@ -28,7 +28,7 @@ class MenuItemsTest {
 	
 	@Test
 	void test_drink_exception() throws InvalidItemIdentifierException {
-		String key = "DRINT001";
+		String key = "DRINK001";
 		try {
 			Drinks drinkTest = new Drinks("drink test",key,1.0,"test","test");
 		}catch(InvalidItemIdentifierException e){

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import exceptions.InvalidStaffIDException;
 import staff.Staff;
 import staff.StaffList;
 
@@ -14,21 +15,31 @@ class StaffListTest {
 	
 	@BeforeEach
 	public void setup() {
-		staffList = new StaffList();
-		staffList.addStaffToList(staff);
+		//staffList = new StaffList();
+		//staffList.addStaffToList(staff);
+		StaffList.getInstance().addStaffToList(staff);
 		
 	}
 	
 	@Test
 	void testAddStaffToList() {
-		 assertTrue(staffList.getStaffList().containsKey(123));
+		// assertTrue(staffList.getStaffList().containsKey(123));
+		assertTrue(StaffList.getInstance().size()>0);
 		  
 	}
 
 	@Test
 	void testRemoveStaffFromList() {
-		staffList.getStaffList().remove(123);
-		assertFalse(staffList.getStaffList().containsKey(123));
+		//staffList.getStaffList().remove(123);
+		try {
+			StaffList.getInstance().removeStaffFromList(123);
+		} catch (InvalidStaffIDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertFalse(StaffList.getInstance().size()>0);
+		//assertFalse(staffList.getStaffList().containsKey(123));
+		
 	}
 
 }

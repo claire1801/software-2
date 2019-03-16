@@ -17,6 +17,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import customers.Customer;
+import customers.CustomerList;
 import customers.MembershipType;
 import exceptions.InvalidCustomerIDException;
 import exceptions.InvalidItemIdentifierException;
@@ -25,6 +26,8 @@ import menu.Drinks;
 import menu.Meals;
 import menu.MenuItems;
 import menu.Snacks;
+import orders.Order;
+import orders.OrderList;
 import shop.Basket;
 
 class Basket_test {
@@ -67,6 +70,8 @@ class Basket_test {
 	private MenuItems item4;
 	private int i;
 	private Customer customer1;
+	Timestamp timestamp = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
+	Order order = new Order(1, 100, timestamp, "FOOD123", 2.00, 0.20, 1);
 	@BeforeEach
 	public void setUp() {
 		i = 10;
@@ -113,7 +118,7 @@ class Basket_test {
 			{
 				e.printStackTrace();
 			}
-		Main.customerList.addCustomer(1, customer1);
+		CustomerList.getInstance().addCustomer(1, customer1);
 		basket.setCurrentCustomerID(1);
 		basket.setCurrentStaffID(001);
 		basket.addItemToUnconfirmedOrder(item1);
@@ -135,7 +140,7 @@ class Basket_test {
 			{
 				e.printStackTrace();
 			}
-		Main.customerList.addCustomer(16, customer16);
+		CustomerList.getInstance().addCustomer(16, customer16);
 		basket.setCurrentCustomerID(16);
 		basket.setCurrentStaffID(001);
 		basket.addItemToUnconfirmedOrder(item3);
@@ -155,7 +160,7 @@ class Basket_test {
 			{
 				e.printStackTrace();
 			}
-		Main.customerList.addCustomer(42, customer42);
+		CustomerList.getInstance().addCustomer(42, customer42);
 		basket.setCurrentCustomerID(42);
 		basket.setCurrentStaffID(001);
 		basket.addItemToUnconfirmedOrder(item1);
@@ -177,7 +182,7 @@ class Basket_test {
 				e.printStackTrace();
 			}
 		
-		Main.customerList.addCustomer(42, customer42);
+		CustomerList.getInstance().addCustomer(42, customer42);
 		basket.setCurrentCustomerID(42);
 		basket.setCurrentStaffID(001);
 		basket.addItemToUnconfirmedOrder(item1);
@@ -199,13 +204,14 @@ class Basket_test {
 			{
 				e.printStackTrace();
 			}
-		Main.customerList.addCustomer(42, customer42);
+		OrderList.getInstance().addOrder(order);
+		CustomerList.getInstance().addCustomer(42, customer42);
 		basket.setCurrentCustomerID(42);
 		basket.setCurrentStaffID(001);
 		basket.addItemToUnconfirmedOrder(item1);
 	    basket.confirmedAndPaid();
-		Main.orderList.totalSales();
-		assertEquals(1,Main.orderList.totalSales());
+		OrderList.getInstance().totalSales();
+		assertEquals(2,OrderList.getInstance().totalSales());
 		
 		
 	}

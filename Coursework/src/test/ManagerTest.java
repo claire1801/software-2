@@ -1,7 +1,12 @@
 package test;
 
 import org.junit.jupiter.api.Test;
+
+import customers.CustomerList;
 import main.*;
+import menu.MenuList;
+import staff.StaffList;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -51,7 +56,7 @@ public class ManagerTest {
 				return;
 			}
 			
-			assertEquals(Main.customerList.getSize(), lineCount);
+			assertEquals(CustomerList.getInstance().getSize(), lineCount);
 			
 		
 		}
@@ -86,7 +91,7 @@ public class ManagerTest {
 				return;
 			}
 			
-			assertEquals(Main.staffList.staffList.size(), lineCount);
+			assertEquals(StaffList.getInstance().size(), lineCount);
 			
 		
 		}
@@ -119,7 +124,7 @@ public class ManagerTest {
 				return;
 			}
 			
-			assertEquals(Main.menuList.menuList.size(), lineCount);
+			assertEquals(MenuList.getInstance().getNumberofMenuItemsInList(), lineCount);
 			
 		
 		}
