@@ -63,10 +63,7 @@ public class Scheduler implements Runnable {
 		servingStaffThread.start();
 		this.addStaffThread(newServerStaff, servingStaffThread);
 		System.out.println("new thread with server: " + newServerStaff.getStaffID());
-		
-		
 		return newServerStaff;
-		
 	}
 	
 	
@@ -119,6 +116,8 @@ public class Scheduler implements Runnable {
 				try {
 					Staff newstaff = this.addServerStaff();
 					MainApplicationWindow.addBox(newstaff);
+					StaffList.getInstance().notifyObservers();
+					Queue.getInstance().notifyObservers();
 				} catch (NoStaffAvailableException e) {
 					e.printStackTrace();
 				}
