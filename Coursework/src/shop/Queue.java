@@ -1,12 +1,16 @@
 package shop;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 import customers.CustomerList;
 import menu.MenuItems;
 import menu.MenuList;
 import main.Log;
+import main.Observer;
+import main.Subject;
 import orders.Order;
 import orders.OrderList;
 /**
@@ -15,7 +19,7 @@ import orders.OrderList;
  * @author samth
  *
  */
-public class Queue {
+public class Queue implements Subject {
 	private static Queue instance;
 	
 	private ArrayList<Basket> queue;
@@ -158,6 +162,33 @@ public class Queue {
 		this.queue.add(basket);
 		System.out.println(this.numberInQueue());
 	
+	}
+	
+	/**
+	 * List to hold any observers
+	 */
+	private List<Observer> registeredObservers = new LinkedList<Observer>();
+
+	/**
+	 * Register an observer with this subject
+	 */
+	public void registerObserver(Observer obs) {
+		registeredObservers.add(obs);
+	}
+
+	/**
+	 * De-register an observer with this subject
+	 */
+	public void removeObserver(Observer obs) {
+		registeredObservers.remove(obs);
+	}
+
+	/**
+	 * Inform all registered observers that there's been an update
+	 */
+	public void notifyObservers() {
+		for (Observer obs : registeredObservers)
+			obs.update();
 	}
 	
 
