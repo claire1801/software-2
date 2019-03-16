@@ -23,7 +23,10 @@ public class Staff implements Runnable {
 	private String lastName;
 
 	private Queue queue;
+	private Log log;
 	private Basket unprocessedOrder;
+	private int CurrentCustomerID = 0;
+	//private int CurrentOrderID = 0;
 	
 	
 	// staff have to 'log in' to be on duty and serving
@@ -43,6 +46,7 @@ public class Staff implements Runnable {
 		this.lastName = lastname;	
 		
 		queue = Queue.getInstance();
+		log = Log.getInstance();
 	}
 	
 	public void run() {
@@ -52,6 +56,8 @@ public class Staff implements Runnable {
 				
 				processOrder();
 				unprocessedOrder.setCurrentStaffID(StaffID);
+				
+				//this.CurrentOrderID = unprocessedOrder.get
 				unprocessedOrder.getTotalDiscount();
 				unprocessedOrder.getFinalBill();
 				unprocessedOrder.confirmedAndPaid();
@@ -66,32 +72,29 @@ public class Staff implements Runnable {
 	
 	private void processOrder() throws InterruptedException {
 		unprocessedOrder = queue.getNextInQueue();
-		updateLog();
-
-		System.out.println("online: " + unprocessedOrder.getOnline());
-		Log.writeToFile("Customer ID: " + unprocessedOrder.getCurrentCustomerID() + " is being processed by Staff " + StaffID);
+		this.CurrentCustomerID = unprocessedOrder.getCurrentCustomerID();
+		//System.out.println("online: " + unprocessedOrder.getOnline());
+		log.writeToFile(updateLog());
 		int speed = Main.sched.speed;
 		Thread.sleep( speed * 200 + (speed * 10 * unprocessedOrder.numberOfItems()));
-
-		Log.writeToFile("Customer ID: " + unprocessedOrder.getCurrentCustomerID() + " order is complete");
-		updateLog2();
+		log.writeToFile(updateLog2());
+		
 	}
 	
 	
 	public String updateLog() {
-		System.out.println("Customer ID: " + unprocessedOrder.getCurrentCustomerID() +  " order is being processed by Server " + StaffID +
-				"\n"+ "This order contains " + unprocessedOrder.getItemsInBasket());
+		//System.out.println("Customer ID: " + CurrentCustomerID +  " order is being processed by Server: " + StaffID +" ("+ this.firstName +" " +this.lastName + ") This order contains " + unprocessedOrder.getItemsInBasket());
 		String order = new String();
-		order += "Customer ID: " + unprocessedOrder.getCurrentCustomerID() +  " order is being processed\n"; 
-		order += "This order contains items" + unprocessedOrder.getItemsInBasket() + "\n";
+		order += "Customer ID: " + CurrentCustomerID +  " order is being processed by Server: " + StaffID +" ("+ this.firstName +" " +this.lastName + ") \n"; 
+		order += "This order contains items: " + unprocessedOrder.getItemsInBasketString() + "\n";
 		return order;
 	}
 	
 	
 	public String updateLog2() {
-		System.out.println("Customer ID: " + unprocessedOrder.getCurrentCustomerID() +  " has been processed");
+		//System.out.println("Customer ID: " + CurrentCustomerID +  " has been processed");
 		String order = new String();
-		order += "orderID: " + "has been processed";
+		order += "The order for Customer: " + CurrentCustomerID + " has been processed by: " + StaffID;
 		return order;
 	}
 	

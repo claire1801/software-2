@@ -280,6 +280,7 @@ public class MainApplicationWindow extends JFrame implements Observer {
 	        		details.setText("");
 	         		CheckoutGUI checkout = new CheckoutGUI(newBasket);
 	        		checkout.setUpGUI(); 
+	        		//newBasket = new Basket();
 	        	}
 			}
 		});

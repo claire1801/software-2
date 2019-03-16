@@ -96,6 +96,17 @@ public class Basket {
 	public Iterable<MenuItems> getItemsInBasket(){
 		return unconfirmedOrder;
 	}
+	/**
+	 * get all items in basket as string
+	 * @return
+	 */
+	public String getItemsInBasketString(){
+		String items = "";
+		for(MenuItems item: unconfirmedOrder) {
+			items += item.getName() + ", ";
+		}
+		return items;
+	}
 		
 // 	
 // 	/**

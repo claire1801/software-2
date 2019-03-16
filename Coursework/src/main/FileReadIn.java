@@ -56,8 +56,6 @@ public class FileReadIn {
 			}
 			
 			double cost = Double.parseDouble(item[2]);
-			//System.out.println(item[0]);
-			//String code = item[1].
 			try {
 			
 			if(item[1].substring(0, 5).equals("DRINK")||item[1].substring(0, 5).equals("COFEE")) {
@@ -81,16 +79,13 @@ public class FileReadIn {
 				String error = item[0] + " ID not formated correct";
 				System.out.println(error);
 			}
-			//counter += 1;
-			//System.out.println(counter);
-			
-		//	menuList.addItem(newMenuItem);
+
 		}
 		scanner.close();
 	}
 	
 	/**
-	 * read in orders - id/customerid/timestamp/item/cost/discount
+	 * read in orders Assumes format of: id/customerid/timestamp/item/cost/discount
 	 * @param fileName - name of file to read in
 	 * @throws FileNotFoundException
 	 * @throws NumberFormatException
@@ -108,7 +103,7 @@ public class FileReadIn {
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
 			String[] order = line.split("/");
-			if(order.length < 5) {//catch errors
+			if(order.length < 5) {
 				continue;
 			}
 			double cost = Double.parseDouble(order[4]);
@@ -130,7 +125,7 @@ public class FileReadIn {
 		
 	}
 	/**
-	 * read in staff name/id
+	 * read in staff Assumes format of: name/id
 	 * @param fileName - file name to read in
 	 * @throws FileNotFoundException
 	 * @throws NumberFormatException
@@ -139,7 +134,6 @@ public class FileReadIn {
 	public static void readStaff(String fileName)  throws FileNotFoundException, NumberFormatException, ArrayIndexOutOfBoundsException {
 		File file = new File(fileName);
 		Scanner scanner = new Scanner(file);
-		//Queue queue = Queue.getInstance();
 		
 		StaffList staffList = StaffList.getInstance();
 		
@@ -150,20 +144,16 @@ public class FileReadIn {
 			int ID = Integer.parseInt(staff[1]);
 			String name = staff[0];
 			String[] names = name.split("\\W+");//split name into first last using whitespace
-			int lastIndex = names.length - 1;// index of last name
-			//int noDrinks = Integer.parseInt(staff[2]);
-			//System.out.print(names[0] + " ");
-			//System.out.println(names[lastIndex]);
+			int lastIndex = names.length - 1;
 			Staff staffmember = new Staff(ID,names[0],names[lastIndex]);
 			staffList.addStaffToList(staffmember);
 		}
-		//System.out.println("start size" + staffList.size());
 		scanner.close();
 		
 	}
 	
 	/**
-	 * read in customers name/id/number of coffees 
+	 * read in customers Assumes format of: name/id/number of coffees 
 	 * @param fileName - file name to read in
 	 * @throws FileNotFoundException
 	 * @throws NumberFormatException
@@ -198,19 +188,14 @@ public class FileReadIn {
 			}else  {
 				memType = MembershipType.MEMBER;
 			}
-			
-			 
-			
-			//System.out.println(customer[0]);
-			//Customer newCustomer = new Customer(customer[0],ID,noDrinks);
+
 			Customer newCustomer;
 			try {
 				newCustomer = new Customer(ID,memType,noDrinks,customer[0]);
-				customerList.addCustomer(ID,newCustomer);//name?
+				customerList.addCustomer(ID,newCustomer);
 			} catch (InvalidCustomerIDException e) {
 				System.out.println("ID of customer incorect format");
 			}
-			//System.out.println(newCustomer.isMember());
 			
 
 		}

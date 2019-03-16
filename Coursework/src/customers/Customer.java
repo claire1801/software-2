@@ -33,10 +33,6 @@ public class Customer {
 			throw new InvalidCustomerIDException("Customer ID is not valid, must be between 1 and 2000000");
 		}
 		
-//		if(member != MembershipType.STUDENT || member != MembershipType.EMPLOYEE || member != MembershipType.MEMBER) {
-//			throw new IllegalStateException("Invalid membership type: Customer must be either a STUDENT, EMPLOYEE OR MEMBER");
-//		}
-		
 		if(numberPreviousCoffees < 0 || numberPreviousCoffees > 4) {
 			throw new IllegalStateException("Number of previous coffees must be between 0 and 4");
 		}
