@@ -1,6 +1,8 @@
 package staff;
 
 import java.util.Hashtable;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import exceptions.InvalidStaffIDException;
@@ -117,20 +119,31 @@ public class StaffList implements Subject {
 	}
 
 	
+	/**
+	 * List to hold any observers
+	 */
+	private List<Observer> registeredObservers = new LinkedList<Observer>();
+
+	/**
+	 * Register an observer with this subject
+	 */
 	public void registerObserver(Observer obs) {
-		
-		
+		registeredObservers.add(obs);
 	}
 
-	@Override
+	/**
+	 * De-register an observer with this subject
+	 */
 	public void removeObserver(Observer obs) {
-		
-		
+		registeredObservers.remove(obs);
 	}
 
+	/**
+	 * Inform all registered observers that there's been an update
+	 */
 	public void notifyObservers() {
-		
-		
+		for (Observer obs : registeredObservers)
+			obs.update();
 	}
 	
 	
