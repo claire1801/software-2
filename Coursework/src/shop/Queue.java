@@ -63,9 +63,10 @@ public class Queue implements Subject {
 		Basket basket = new Basket();
 		for(Order order: orderList) {
 			basket.setCurrentCustomerID(order.getCustomerID());
-			if(order.getOrderID() == prevOrderID) {
+			if(order.getOrderID() == prevOrderID || prevOrderID == 0) {
 				MenuItems item = ml.getItem(order.getItemID());
 				basket.addItemToUnconfirmedOrder(item);
+				prevOrderID = order.getOrderID();
 			}
 			else {
 				this.addToQueue(basket);
@@ -133,12 +134,10 @@ public class Queue implements Subject {
 	
 	
 	public void addRandomCustomer() {
-	//	System.out.println("hello");
+		Log log = Log.getInstance();
 		Basket basket = new Basket();
 		CustomerList cl = CustomerList.getInstance();
 		MenuList ml = MenuList.getInstance();
-		//Iterable<MenuItems> menuItems = ml.getAllMenuItems();
-	//	System.out.println("hello");
 		double randomNumber = Math.random();
 		int numberOfItems = (int) (randomNumber * 5) + 1;
 		randomNumber = Math.random();
@@ -153,15 +152,13 @@ public class Queue implements Subject {
 
 		
 		basket.setCurrentCustomerID(customerId);
-	//	System.out.println(numberOfItems);
+	
 		for(int x = 0; x < numberOfItems; x++) {
-	//		System.out.println("hello1");
 			MenuItems item = ml.getRandomItem();
 			basket.addItemToUnconfirmedOrder(item);
 		}
-		Log.writeToFile("Customer " + basket.getCurrentCustomerID() + " was added to the queue");	
+		log.writeToFile("Customer " + basket.getCurrentCustomerID() + " was added to the queue \n");	
 		this.addToQueue(basket);
-		//System.out.println(this.numberInQueue());
 	
 	}
 	
