@@ -17,7 +17,10 @@ import staff.StaffList;
 public class Scheduler implements Runnable {
 	
 	private int staffCounter = 0;
-	public int speed = 1;
+	/**
+	 * speed variable controls the speed note: speed 1 is fastest 10 slowest
+	 */
+	public int speed = 5;
 	public boolean isOpen = false;
 	ArrayList<Thread> threadList;
 	ArrayList<Staff> staff;
@@ -58,6 +61,7 @@ public class Scheduler implements Runnable {
 	public synchronized  Staff addServerStaff() throws NoStaffAvailableException {
 		staffCounter++;
 		Staff newServerStaff = StaffList.getInstance().getNextAvailableServer();
+		//staff.add(newServerStaff);
 		newServerStaff.isServing(true);
 		Thread servingStaffThread = new Thread(newServerStaff);
 		servingStaffThread.start();
@@ -71,9 +75,14 @@ public class Scheduler implements Runnable {
 		// could possibly add in functionality so that order being processed is not lost
 		
 		//remove last server to be added
-		this.staff.get(staff.size()).isServing(false);
-		this.removeStaffThread(staff.size());
-		staffCounter--;
+		if(this.staff.size() != 0) {
+			this.staff.get(staff.size()-1).isServing(false);
+			this.removeStaffThread(staff.size()-1);
+			System.out.println("heelo");
+			//this.staff.remove(staff.size()-1);
+			staffCounter--;
+		}
+		
 	}
 	
 	
@@ -122,14 +131,48 @@ public class Scheduler implements Runnable {
 					e.printStackTrace();
 				}
 			}
+			
+			if (staffCounter * 4 > queue.numberInQueue()) {
+				this.removeServerStaff();
+				System.out.println("heelo");
+			}
 			queue.addRandomCustomer();
 			try {
-				Thread.sleep(speed * 1000);
+				Thread.sleep(speed * 1300);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			
 		}
+	}
+	/**
+	 * get the current speed - 10 is slowest 1 fastest
+	 * @return int of speed 1- 10
+	 */
+
+	public synchronized  int getSpeed() {
+		return speed;
+	}
+	/**
+	 * increase the speed
+	 * @return int - new speed note: returns true speed
+	 */
+
+	public synchronized  int incSpeed() {
+		if(speed > 1) {
+			speed--;
+		}
+		return (10 - speed) + 1;
+	}
+	/**
+	 * Decrease the speed
+	 * @return int - new speed note: returns true speed
+	 */
+	public synchronized  int decSpeed() {
+		if(speed < 10) {
+			speed++;
+		}
+		return (10 - speed) + 1;
 	}
 
 }

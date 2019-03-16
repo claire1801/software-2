@@ -47,7 +47,7 @@ public class Staff implements Runnable {
 	
 	public void run() {
 		 System.out.println ("Thread " + Thread.currentThread().getId() + " is running server id: " + this.StaffID);
-		while(!queue.queueEmpty()) {
+		while(!queue.queueEmpty() && this.serving == true) {
 			try {
 				
 				processOrder();
@@ -70,7 +70,8 @@ public class Staff implements Runnable {
 
 		System.out.println("online: " + unprocessedOrder.getOnline());
 		Log.writeToFile("Customer ID: " + unprocessedOrder.getCurrentCustomerID() + " is being processed by Staff " + StaffID);
-		Thread.sleep(Main.sched.speed * 500);
+		int speed = Main.sched.speed;
+		Thread.sleep( speed * 200 + (speed * 10 * unprocessedOrder.numberOfItems()));
 
 		Log.writeToFile("Customer ID: " + unprocessedOrder.getCurrentCustomerID() + " order is complete");
 		updateLog2();

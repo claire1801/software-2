@@ -87,6 +87,7 @@ public class Queue implements Subject {
 		}else {
 			this.queue.add(newBasket);
 		}
+		System.out.println(this.numberInQueue());
 
 		
 	}
@@ -159,8 +160,8 @@ public class Queue implements Subject {
 			basket.addItemToUnconfirmedOrder(item);
 		}
 		Log.writeToFile("Customer " + basket.getCurrentCustomerID() + " was added to the queue");	
-		this.queue.add(basket);
-		System.out.println(this.numberInQueue());
+		this.addToQueue(basket);
+		//System.out.println(this.numberInQueue());
 	
 	}
 	

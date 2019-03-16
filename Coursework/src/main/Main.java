@@ -9,9 +9,9 @@ import java.io.PrintWriter;
 import javax.swing.JFrame;
 
 //import GUI.ForDeletion2;
-import GUI.MainGUI;
+
 import GUI.MainApplicationWindow;
-import GUI.Stage2GUI;
+
 import customers.CustomerList;
 import exceptions.InvalidCustomerIDException;
 import exceptions.InvalidItemIdentifierException;
@@ -32,7 +32,7 @@ import java.text.ParseException;
  */
 public class Main {
 	
-	public static Basket basket = new Basket();
+	//public static Basket basket = new Basket();
 	public static Queue queue = Queue.getInstance();
 	public static Scheduler sched;
 	

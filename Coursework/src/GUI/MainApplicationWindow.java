@@ -21,6 +21,7 @@ import main.Main;
 import main.Observer;
 import menu.MenuItems;
 import menu.MenuList;
+import shop.Basket;
 import shop.Queue;
 import staff.Staff;
 import staff.StaffList;
@@ -47,6 +48,8 @@ public class MainApplicationWindow extends JFrame implements Observer {
 	private JTextArea staffOnDuty;
 	
 	private static JPanel serverActivityPanel;
+	
+	private Basket newBasket = new Basket();
 	
 	
 	
@@ -165,7 +168,7 @@ public class MainApplicationWindow extends JFrame implements Observer {
 					if(StaffList.getInstance().staffExists(ID)) {
 						//CustomerID = ID;
 						details.setText("\"" + IDnumber + "\" is set for Staff");
-						Main.basket.setCurrentStaffID(ID);
+						newBasket.setCurrentStaffID(ID);
 					} else {
 						details.setText("There is no Staff with ID:\"" + IDnumber + "\" ");
 					}
@@ -193,7 +196,7 @@ public class MainApplicationWindow extends JFrame implements Observer {
 					if(CustomerList.getInstance().customerExists(ID)) {
 						customerID = ID;
 						details.setText("\"" + IDnumber + "\" is set");
-						Main.basket.setCurrentCustomerID(customerID);
+						newBasket.setCurrentCustomerID(customerID);
 					} else {
 						details.setText("There is no customer with ID:\"" + IDnumber + "\" ");
 					}
@@ -250,9 +253,9 @@ public class MainApplicationWindow extends JFrame implements Observer {
 				int index = list.getSelectedIndex();
 	            String uniquID = ID[index];
 	            
-	            Main.basket.addItemToUnconfirmedOrder(menuList.getItem(uniquID));
+	            newBasket.addItemToUnconfirmedOrder(menuList.getItem(uniquID));
 	            
-	            Iterable<MenuItems> basketList = Main.basket.getItemsInBasket();
+	            Iterable<MenuItems> basketList = newBasket.getItemsInBasket();
 	            String output = "";
 	            for(MenuItems item : basketList) {
 	            	output += String.format("%s\n", item.getID());
@@ -268,14 +271,14 @@ public class MainApplicationWindow extends JFrame implements Observer {
 		/**
 		 *  Button to go to checkout for interactive order
 		 */
-		JButton btnCheckout = new JButton("Checkout");
+		JButton btnCheckout = new JButton("Add to Queue");
 		btnCheckout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 	        	if(customerID == 0) {
 	        		details.setText("please enter customer ID");
 	        	}else  {
 	        		details.setText("");
-	         		CheckoutGUI checkout = new CheckoutGUI();
+	         		CheckoutGUI checkout = new CheckoutGUI(newBasket);
 	        		checkout.setUpGUI(); 
 	        	}
 			}
@@ -367,7 +370,9 @@ public class MainApplicationWindow extends JFrame implements Observer {
 		btnSpeedUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//add in speed up control
+				int speed = Main.sched.incSpeed();
+				String message = "New Speed: " + speed;
+				details.setText(message);
 	     
 			}
 		});
@@ -383,7 +388,9 @@ public class MainApplicationWindow extends JFrame implements Observer {
 		btnSlowDown.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//add in slow down control
+				int speed = Main.sched.decSpeed();
+				String message = "New Speed: " + speed;
+				details.setText(message);
 	     
 			}
 		});
@@ -401,6 +408,7 @@ public class MainApplicationWindow extends JFrame implements Observer {
 				Staff newstaff;
 				try {
 					newstaff =  Main.sched.addServerStaff();
+					
 					addBox(newstaff);
 				} catch (NoStaffAvailableException e1) {
 					e1.printStackTrace();
@@ -455,7 +463,9 @@ public class MainApplicationWindow extends JFrame implements Observer {
 		btnRemoveServer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.sched.removeServerStaff();
-				
+				int size = serverActivityPanel.getComponentCount();
+				serverActivityPanel.remove(size-1);
+				serverActivityPanel.validate();
 				// could remove boxes too (would maybe need to keep a running list of boxes added?
 			}
 		});
