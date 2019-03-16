@@ -221,6 +221,11 @@ public class Basket {
 	{
 		this.online = online;
 	}
+	
+	
+	public int numberOfItems() {
+		return unconfirmedOrder.size();
+	}
 
 	
 

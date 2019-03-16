@@ -5,6 +5,7 @@ import java.util.Set;
 
 import exceptions.InvalidStaffIDException;
 import exceptions.NoStaffAvailableException;
+import main.*;
 
 
 /**
@@ -13,7 +14,7 @@ import exceptions.NoStaffAvailableException;
  *
  */
 
-public class StaffList {
+public class StaffList implements Subject {
 
 	private static StaffList instance;
 	
@@ -68,19 +69,19 @@ public class StaffList {
 		
 	}
 	
-	public Staff getRandomStaff() {
-		//System.out.println("i am here2");
-		double randomNumber = Math.random();
-		int ID = (int) (randomNumber * this.size() + 1);
-		//System.out.println(this.size());
-		while(this.staffExists(ID) == false) {
-			//System.out.println("id no" + ID);
-			randomNumber = Math.random();
-			ID = (int) (randomNumber * this.staffList.size() + 1);
-		}
-		return staffList.get(ID);
-		
-	}
+//	public Staff getRandomStaff() {
+//		//System.out.println("i am here2");
+//		double randomNumber = Math.random();
+//		int ID = (int) (randomNumber * this.size() + 1);
+//		//System.out.println(this.size());
+//		while(this.staffExists(ID) == false) {
+//			//System.out.println("id no" + ID);
+//			randomNumber = Math.random();
+//			ID = (int) (randomNumber * this.staffList.size() + 1);
+//		}
+//		return staffList.get(ID);
+//		
+//	}
 	
 	
 	public boolean staffExists(int ID) {
@@ -94,9 +95,42 @@ public class StaffList {
 			Staff staff = staffList.get(key);
 			if(staff.isStaffAtWork() == true && staff.isStaffServing() == false) {
 				return staff;
-			} else throw new NoStaffAvailableException("There are no staff working that are free to serve");
+			} 
 		}
-		return null;
+		throw new NoStaffAvailableException("There are no staff working that are free to serve");
+		
+	}
+	
+	public String onDutyList() {
+		String message = "Staff on duty...\n";
+		Set<Integer> keys = staffList.keySet();
+		for(int key : keys) {
+			Staff staff = staffList.get(key);
+			if (staff.isStaffAtWork()) 
+				message += String.format("Staff No. %d, %s %s staff. Currently ",
+						staff.getStaffID(), staff.getStaffFirstName(), staff.getStaffLastName());
+			if (staff.isStaffServing()) {
+				message += "serving.\n"; 
+			} else {message += "free.\n";}
+		}
+		return message;
+	}
+
+	
+	public void registerObserver(Observer obs) {
+		
+		
+	}
+
+	@Override
+	public void removeObserver(Observer obs) {
+		
+		
+	}
+
+	public void notifyObservers() {
+		
+		
 	}
 	
 	

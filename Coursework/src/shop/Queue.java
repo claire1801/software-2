@@ -19,6 +19,7 @@ public class Queue {
 	private static Queue instance;
 	
 	private ArrayList<Basket> queue;
+	private boolean shopOpen = false;
 	/**
 	 * constructor
 	 */
@@ -36,9 +37,18 @@ public class Queue {
 			instance = new Queue();
 		return instance;
 	}
+	
+	public synchronized boolean getShopOpen() {
+		return this.shopOpen;
+	}
+	
+	public synchronized void setShopOpen(boolean open) {
+		 this.shopOpen = open;
+	}
 	/**
 	 * loads in existing orders into the queue. must be called after orders are imported
 	 */
+	
 	
 	public void setupQueue() {
 		OrderList ol = OrderList.getInstance();
@@ -87,6 +97,19 @@ public class Queue {
 		return nextBasket;
 		
 	}
+	
+	
+	
+	
+	public String getQueueDetails() {
+		String output = "Current Queue...\n";
+		for (Basket b:queue) {
+			output += String.format("Customer: %d with %d items\n", b.getCurrentCustomerID(), b.numberOfItems());
+		}
+		return output;
+	}
+	
+	
 	
 	public int numberInQueue() {
 		return queue.size();

@@ -46,11 +46,13 @@ public class Staff implements Runnable {
 	}
 	
 	public void run() {
-		
+		 System.out.println ("Thread " + Thread.currentThread().getId() + " is running server id: " + this.StaffID);
 		while(!queue.queueEmpty()) {
 			try {
-				 System.out.println ("Thread " + Thread.currentThread().getId() + " is running");
+				
 				processOrder();
+				unprocessedOrder.setCurrentStaffID(StaffID);
+				unprocessedOrder.getTotalDiscount();
 				unprocessedOrder.getFinalBill();
 				unprocessedOrder.confirmedAndPaid();
 				
@@ -68,7 +70,7 @@ public class Staff implements Runnable {
 
 		System.out.println("online: " + unprocessedOrder.getOnline());
 		Log.writeToFile("Customer ID: " + unprocessedOrder.getCurrentCustomerID() + " is being processed by Staff " + StaffID);
-		Thread.sleep(Main.sched.Speed * 500);
+		Thread.sleep(Main.sched.speed * 500);
 
 		Log.writeToFile("Customer ID: " + unprocessedOrder.getCurrentCustomerID() + " order is complete");
 		updateLog2();
@@ -144,6 +146,14 @@ public class Staff implements Runnable {
 	 */
 	public boolean isStaffServing() {
 		return this.serving;
+	}
+	/**
+	 * get the basket currently being processed
+	 * @return current basket
+	 */
+	
+	public Basket getCurrentBasket() {
+		return this.unprocessedOrder;
 	}
 
 }

@@ -8,7 +8,9 @@ import java.io.PrintWriter;
 
 import javax.swing.JFrame;
 
+//import GUI.ForDeletion2;
 import GUI.MainGUI;
+import GUI.MainApplicationWindow;
 import GUI.Stage2GUI;
 import customers.CustomerList;
 import exceptions.InvalidCustomerIDException;
@@ -50,8 +52,10 @@ public class Main {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+
+		setupQueue(30);
 		
-		setupQueue(20);
+		
 		
 		  javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			  
@@ -62,17 +66,24 @@ public class Main {
 			  }
 			   
 			    });
+		  
+		  
+		  
+		  
 		  sched = new Scheduler();
 		  Thread TimeThread = new Thread(sched);
 		  TimeThread.start();
 		  
 
 	}
+	
+	
+	
+	
 	/**
 	 * set up queue and add random customers  to queue
 	 * @param newCustomers - number of customers to add
 	 */
-	
 	private static void setupQueue(int newCustomers) {
 		queue.setupQueue();
 		for(int i =0; i < newCustomers; i++) { 
@@ -80,32 +91,42 @@ public class Main {
 		}
 	}
 	
+	
+	
+	
 /**
  * create the GUI interface
  */
 	private static void createAndShowGUI() {
-   	  JFrame frame = new MainGUI();
-		JFrame frame2 = new Stage2GUI();
-  	 
-  	  //Display the window.
-  	 
-  	  frame.pack();
-  	  frame2.pack();
-  	 
-  	  frame.setVisible(true);
-  	  frame2.setVisible(true);
-  	  
-  	 
-  	  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-  	  frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-  	 
-  	 
+	  
+		
+		JFrame frame = new MainApplicationWindow();
+		frame.setVisible(true);
+  	
+	  
+	  // old initialisation
+
+//	      JFrame frame = new MainGUI();
+//  	  JFrame frame2 = new Stage2GUI();
+//  	 
+//  	  frame.pack();
+//  	  frame2.pack();
+//  	 
+//  	  frame.setVisible(true);
+//  	  frame2.setVisible(true);
+//  	  
+//  	 
+//  	  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//  	  frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   	 }
+	
+	
+	
+	
 	
 	/**
 	 * runs shutdown procedure
 	 */
-	
 	public static void progExit() {
 		updateFiles();
 		writeReport("report.txt");
@@ -114,10 +135,12 @@ public class Main {
 	}
 	
 	
+	
+	
+	
 	/**
 	 * update all data files
 	 */
-	
 	private static void updateFiles() {
 		
 		MenuList menuList = MenuList.getInstance();
