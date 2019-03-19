@@ -49,11 +49,11 @@ public class Queue implements Subject {
 	public synchronized void setShopOpen(boolean open) {
 		 this.shopOpen = open;
 	}
+	
+	
 	/**
 	 * loads in existing orders into the queue. must be called after orders are imported
 	 */
-	
-	
 	public void setupQueue() {
 		OrderList ol = OrderList.getInstance();
 		MenuList ml = MenuList.getInstance();
@@ -78,6 +78,8 @@ public class Queue implements Subject {
 		}
 		//System.out.println(this.numberInQueue());
 	}
+	
+	
 	/**
 	 * add an basket (customer) to the end of the queue. This method is synchronized
 	 * @param newBasket - the basket to add
@@ -92,6 +94,9 @@ public class Queue implements Subject {
 
 		
 	}
+	
+	
+	
 	/**
 	 * returns the basket (customer) at the beginning of the queue ( index 0) and removes it from the queue. This method is synchronized
 	 * @return the next basket in the queue
@@ -110,7 +115,11 @@ public class Queue implements Subject {
 	public String getQueueDetails() {
 		String output = "Current Queue...\n";
 		for (Basket b:queue) {
-			output += String.format("Customer: %d with %d items\n", b.getCurrentCustomerID(), b.numberOfItems());
+			String orderType = "";
+			if(b.getOnline()) {
+				orderType += "Online";
+			} else { orderType += "In store";}
+			output += String.format("Customer %d with %d items. %s order.\n", b.getCurrentCustomerID(), b.numberOfItems(), orderType);
 		}
 		return output;
 	}
