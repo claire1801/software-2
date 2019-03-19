@@ -12,7 +12,7 @@ import main.*;
 
 /**
  * 
- * @author frsrg
+ * 
  *
  */
 
@@ -50,12 +50,12 @@ public class StaffList implements Subject {
 		}
 		
 	}
+	
 	/**
 	 * get staff member
 	 * @param ID
 	 * @return staff if exists or null if not
 	 */
-	
 	public Staff getStaff(int ID) {
 		if(this.staffExists(ID)) {
 			return staffList.get(ID);

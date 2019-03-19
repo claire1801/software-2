@@ -78,7 +78,8 @@ public class Staff implements Runnable {
 		int speed = Main.sched.speed;
 		Thread.sleep( speed * 200 + (speed * 10 * unprocessedOrder.numberOfItems()));
 		log.writeToFile(updateLog2());
-		
+		StaffList.getInstance().notifyObservers();
+		Queue.getInstance().notifyObservers();
 	}
 	
 	
