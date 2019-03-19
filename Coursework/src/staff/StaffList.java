@@ -112,7 +112,9 @@ public class StaffList implements Subject {
 				message += String.format("Staff No. %d, %s %s staff. Currently ",
 						staff.getStaffID(), staff.getStaffFirstName(), staff.getStaffLastName());
 			if (staff.isStaffServing()) {
-				message += "serving.\n"; 
+				String items = staff.getCurrentBasket().getItemsInBasketString();
+				int cutID = staff.getCurrentBasket().getCurrentCustomerID();
+				message += "serving cusotmer: " + cutID + " (" + items + ") .\n"; 
 			} else {message += "free.\n";}
 		}
 		return message;

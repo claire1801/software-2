@@ -41,11 +41,19 @@ public class Queue implements Subject {
 			instance = new Queue();
 		return instance;
 	}
+	/**
+	 * shop open true/false
+	 * @return boolean - true/false
+	 */
 	
 	public synchronized boolean getShopOpen() {
 		return this.shopOpen;
 	}
 	
+	/**
+	 * set the to be open (true) or closed (false)
+	 * @param open - boolean 
+	 */
 	public synchronized void setShopOpen(boolean open) {
 		 this.shopOpen = open;
 	}
@@ -58,7 +66,7 @@ public class Queue implements Subject {
 		OrderList ol = OrderList.getInstance();
 		MenuList ml = MenuList.getInstance();
 		Iterable<Order> orderList = ol.getAllOrders();
-		//Queue queue = Queue.getInstance();
+		
 		int prevOrderID = 0;
 		Basket basket = new Basket();
 		for(Order order: orderList) {
@@ -76,7 +84,7 @@ public class Queue implements Subject {
 				prevOrderID = order.getOrderID();
 			}
 		}
-		//System.out.println(this.numberInQueue());
+	
 	}
 	
 	
@@ -109,10 +117,13 @@ public class Queue implements Subject {
 		
 	}
 	
+	/**
+	 * get the details of all baskets in queue
+	 * @return string - of details
+	 */
 	
 	
-	
-	public String getQueueDetails() {
+	public synchronized String getQueueDetails() {
 		String output = "Current Queue...\n";
 		for (Basket b:queue) {
 			String orderType = "";
@@ -124,23 +135,25 @@ public class Queue implements Subject {
 		return output;
 	}
 	
+	/**
+	 * Gives the number of baskets in the queue
+	 * @return int - number of baskets in queue
+	 */
 	
-	
-	public int numberInQueue() {
+	public synchronized int numberInQueue() {
 		return queue.size();
 	}
-	
-	public boolean queueEmpty(){
-		if(this.queue.isEmpty()) {
-			return true;		
-		} else {
-		return false;
-		}
+	/**
+	 * is the queue empty
+	 * @return true/false
+	 */
+	public synchronized boolean queueEmpty(){
+
+		return this.queue.isEmpty();
 	}
 	/**
 	 * creates a new random basket and adds it to the queue
 	 */
-	
 	
 	public void addRandomCustomer() {
 		Log log = Log.getInstance();

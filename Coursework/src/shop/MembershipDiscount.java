@@ -6,7 +6,12 @@ import customers.*;
 
 public class MembershipDiscount extends Discount {
 
-
+	/**
+	 * get discount due to membership type
+	 * @param unconfirmedOrder
+	 * @param customerID
+	 * @param tempBill
+	 */
 	
 	public MembershipDiscount(ArrayList<MenuItems> unconfirmedOrder, int customerID, double tempBill) {
 		super(unconfirmedOrder, customerID, tempBill);

@@ -44,7 +44,7 @@ public class CheckoutGUI extends JFrame implements ActionListener{
 		
 		
 	}
-	/*
+	/**
 	 * set up window
 	 */
 	
@@ -91,7 +91,9 @@ public class CheckoutGUI extends JFrame implements ActionListener{
         this.add(southPanel, BorderLayout.CENTER);   	
     }
 	
-	
+	/**
+	 * action listener
+	 */
 	
 	
 	public void actionPerformed(ActionEvent e) { 

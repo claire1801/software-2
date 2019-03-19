@@ -28,35 +28,34 @@ public class Scheduler implements Runnable {
 	public Scheduler() {
 		this.threadList = new ArrayList<Thread>();
 		this.staff = new ArrayList<Staff>();
-		//this.addStaff();
+		
 	}
 	
-	
-//	/**
-//	 * is staff working i.e. thread running?
-//	 * @param ID
-//	 * @return
-//	 */
-//	private boolean staffWorking(int ID) {
-//		return currentStaff.contains(ID);
-//		
-//	}
-	
-	
-
+	/**
+	 * add staff and thread to lists
+	 * @param s - staff to add
+	 * @param t - corresponding thread to add
+	 */
 	private void addStaffThread(Staff s, Thread t) {
 		staff.add(s);
 		threadList.add(t);
 	}
 	
-	
+	/**
+	 * remove thread and staff from lists
+	 * @param i - index of thread/staff
+	 */
 	
 	private void removeStaffThread(int i) {
 		staff.remove(i);
 		threadList.remove(i);
 	}
 	
-
+	/**
+	 * add server staff to working list
+	 * @return the new staff on duty
+	 * @throws NoStaffAvailableException
+	 */
 	
 	public synchronized  Staff addServerStaff() throws NoStaffAvailableException {
 		StaffList sl = StaffList.getInstance();
@@ -75,7 +74,10 @@ public class Scheduler implements Runnable {
 
 	}
 	
-	
+	/**
+	 * remove staff from duty
+	 * @throws NullPointerException
+	 */
 	public synchronized  void removeServerStaff() throws NullPointerException {
 		// could possibly add in functionality so that order being processed is not lost
 		
@@ -91,27 +93,8 @@ public class Scheduler implements Runnable {
 	}
 	
 	
-//	private void addStaff() {
-//		//System.out.println("i am here");
-//		StaffList staffList = StaffList.getInstance();
-//		//System.out.println("i am here");
-//		Staff newStaff = staffList.getRandomStaff();
-//		while(this.staffWorking(newStaff.getStaffID()) == true) {
-//			newStaff = staffList.getRandomStaff(); // done this already?
-//		}
-//		if(staffList.size() > staffCounter) {
-//			currentStaff.add(newStaff.getStaffID());
-//			Thread staffThread = new Thread(newStaff);
-//			staffThread.start();
-//			staffCounter++;
-//		}
-//	}
-	
-
-	
-	
 	/**
-	 * main loop of time manager
+	 * main loop of time manager - adds new staff threads as needed and created new random customers
 	 */
 	public void run() {
 		Queue queue = Queue.getInstance();
@@ -139,7 +122,7 @@ public class Scheduler implements Runnable {
 			
 			if (staffCounter * 4 > queue.numberInQueue()) {
 				this.removeServerStaff();
-				System.out.println("heelo");
+				
 			}
 			queue.addRandomCustomer();
 			try {

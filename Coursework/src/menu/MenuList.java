@@ -1,6 +1,5 @@
 package menu;
-import java.util.ArrayList;
-import java.util.Set;
+
 import java.util.TreeMap;
 
 public class MenuList {
@@ -31,20 +30,7 @@ public class MenuList {
 	}
 	
 	
-//	/**
-//	 *  Getter for returning the menu list
-//	 * @return menuList
-//	 */
-//	public TreeMap<String, MenuItems> getMenuList() { // I don't really understand the point of this method
-//		String message = "";
-//		try { 
-//			return menuList; 
-//		} catch (NullPointerException e) {
-//			message = e.getMessage() + "Could not get menuList";	
-//			System.out.println(message); 
-//			return null;
-//		}
-//	}
+
 
 	/**
 	 * Add menu items to menu list 
@@ -117,7 +103,10 @@ public class MenuList {
 		}
 		return report;
 	}
-	
+	/**
+	 *  return a random item from the list - used for creating a random customer order
+	 * @return random item
+	 */
 	public MenuItems getRandomItem() {
 		double randomNumber = Math.random();
 		int index = (int) (randomNumber * this.getNumberofMenuItemsInList());

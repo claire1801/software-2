@@ -12,7 +12,9 @@ public class MealDealDiscount extends Discount {
 		super(unconfirmedOrder, customerID, unDiscountedBill);
 	}
 	
-	
+	/**
+	 * get discount for meal deals
+	 */
 	public double getDiscount() {
 		if (super.unconfirmedOrder.size() <3) {
 			return 0;

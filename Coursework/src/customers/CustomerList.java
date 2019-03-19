@@ -86,6 +86,10 @@ public class CustomerList {
 			return false;
 		}
 	}
+	/**
+	 * get the number of customers
+	 * @return int - number of customers
+	 */
 	public int getSize() {
 		return customerList.size();
 	}

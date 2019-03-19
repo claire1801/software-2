@@ -44,7 +44,7 @@ public class AddCustomerGUI extends JFrame implements ActionListener{
 
 		
 	}
-	/*
+	/**
 	 * set up window
 	 */
 	
@@ -62,6 +62,9 @@ public class AddCustomerGUI extends JFrame implements ActionListener{
         this.setVisible(true);
         this.setLocation(50, 50);
 	}
+	/**
+	 * set up panel
+	 */
 
 	private void panel() {
 		//this panel will add a search function.
@@ -101,7 +104,9 @@ public class AddCustomerGUI extends JFrame implements ActionListener{
     }
 	
 	
-	
+	/**
+	 * button press listener
+	 */
 	
 	public void actionPerformed(ActionEvent e) { 
     	if (e.getSource() == AddCustomer) {

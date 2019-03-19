@@ -30,14 +30,11 @@ public class Staff implements Runnable {
 	
 	
 	// staff have to 'log in' to be on duty and serving
+	
 	private boolean atWork = true; // set to True until a 'home' screen where the on duty staff can be set
 	private boolean serving = false;
 	
-	
 
-	//private static final int orderTime = 5000; //milliseconds
-
-	// could possibly add wage, no. of sales etc.
 	
 	
 	public Staff(int StaffID, String firstname, String lastname) {

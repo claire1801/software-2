@@ -124,7 +124,7 @@ public class Main {
 	
 	
 	/**
-	 * update all data files
+	 * update all data  files (orderlist.txt, menulist.txt, cutomerlist.txt)
 	 */
 	private static void updateFiles() {
 		
@@ -137,10 +137,7 @@ public class Main {
 		
 		String menu = menuList.writeReport();
 		printToFile("MenuItems.txt",menu);
-//		
-//		String menu = staffList.writeReport();    // not needed?
-//		printToFile("StaffList.txt",menu);
-//		
+	
 		String customer = customerList.writeReport();
 		printToFile("customerList.txt",customer);
 

@@ -20,13 +20,17 @@ public class Log {
 		return instance;
 	}
 	
-	private static Timestamp timestamp = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
+	private  Timestamp timestamp = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
 	
-	
-	public static synchronized void writeToFile(String details)  {
+	/**
+	 * write details to log file (logFile.txt)
+	 * @param details - string to write to file
+	 */
+	public synchronized void writeToFile(String details)  {
 		try {
 			FileWriter fw = new FileWriter("logFile.txt", true);
 			BufferedWriter bw = new BufferedWriter(fw);
+			timestamp = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
 			bw.write(timestamp +": " + details);
 			bw.newLine();
 			bw.close();

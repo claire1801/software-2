@@ -30,25 +30,57 @@ public abstract class MenuItems {
 		}else {
 			throw new InvalidItemIdentifierException(String.format("Invalid ID on product with name: %s", name));
 		}
-}
+	}
 	
-
+	/**
+	 * get the name of the item
+	 * @return string name
+	 */
 	public String getName() { return name; }
-	
+	/**
+	 * get the item ID
+	 * @return String - ID 
+	 */
 	public String getID() { return uniqueID; }
-	
-	public void setID(String newID) { uniqueID = newID; }
-	
+	/**
+	 * set the ID
+	 * @param newID - string
+	 */
+	public void setID(String newID) { 
+		
+		uniqueID = newID; 
+	}
+	/**
+	 * get cost
+	 * @return cost of item
+	 */
 	public double getCost() { return cost; }
-	
+	/**
+	 * set cost of item
+	 * @param newCost
+	 */
 	public void setCost(double newCost) { cost = newCost; }
+	/**
+	 * get description of item 
+	 * @return string 
+	 */
 	
 	public String getDescription() { return description; }
+	/**
+	 * set Description
+	 * @param newDescription
+	 */
 	
 	public void setDescription(String newDescription) { description = newDescription; }
-	
+	/**
+	 * get allergens
+	 * @return
+	 */
 	public String getAllergens() { return allergens; }
-	
+	/**
+	 * get allergens 
+	 * @param newAllergens
+	 */
 	public void setAllergens(String newAllergens) { allergens = newAllergens; }
 	
 	

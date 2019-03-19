@@ -29,23 +29,16 @@ public class Customer {
 	 * @throws InvalidCustomerIDException 
 	 */
 	public Customer(int customerID, MembershipType member, int numberPreviousCoffees, String name) throws InvalidCustomerIDException {
-		if(customerID < 1 || customerID > 2000000) {
-			throw new InvalidCustomerIDException("Customer ID is not valid, must be between 1 and 2000000");
-		}
 		
-		if(numberPreviousCoffees < 0 || numberPreviousCoffees > 4) {
-			throw new IllegalStateException("Number of previous coffees must be between 0 and 4");
-		}
 		
-		if(name.length() == 0) {
-         		throw new IllegalStateException("Name can not be blank");
-		}
+		
+		
 		
 	
-		this.customerID = customerID;
-		this.member = member;
-		this.numberPreviousCoffees = numberPreviousCoffees;
-		this.name = name;
+		this.setCustomerId(customerID);
+		this.setType(member);
+		this.setNumberPreviousCoffees(numberPreviousCoffees);
+		this.setName(name);
 	}
 
 	/**
@@ -55,30 +48,72 @@ public class Customer {
 	public int getCustomerId() {
 		return customerID;
 	}
+	/**
+	 * set customer ID
+	 * @param customerId int - ID
+	 * @throws InvalidCustomerIDException
+	 */
 
-	public void setCustomerId(int customerId) {
-		this.customerID = customerId;
+	public void setCustomerId(int customerId) throws InvalidCustomerIDException {
+		if(customerId < 1 || customerId > 2000000) {
+			throw new InvalidCustomerIDException("Customer ID is not valid, must be between 1 and 2000000");
+		
+		}else {
+			this.customerID = customerId;
+		}
+		
 	}
-
+/**
+ * get number of coffees - used for discount
+ * @return int - coffees
+ */
 	public int getNumberPreviousCoffees() {
 		return numberPreviousCoffees;
 	}
-
+	/**
+	 * set number of coffees
+	 * @param numberPreviousCoffees
+	 */
 	public  synchronized void setNumberPreviousCoffees(int numberPreviousCoffees) {
-		this.numberPreviousCoffees = numberPreviousCoffees;
+		if(numberPreviousCoffees < 0 || numberPreviousCoffees > 4) {
+			throw new IllegalStateException("Number of previous coffees must be between 0 and 4");
+		} else {
+			this.numberPreviousCoffees = numberPreviousCoffees;
+		}
+		
 	}
+	/**
+	 * get name of customer
+	 * @return String name
+	 */
 	
 	public String getName() {
 		return name;
 	}
-	
+	/**
+	 * set name of customer (first and second)
+	 * @param name - String
+	 */
 	public void setName(String name) {
-		this.name = name;
+		if(name.length() == 0) {
+     		throw new IllegalStateException("Name can not be blank");
+		}	else {
+			this.name = name;
+		}
 	}
+	
+	/**
+	 * return membership type
+	 * @return
+	 */
 
 	public MembershipType getType() {
 		return member;
 	}
+	/**
+	 * set membership type
+	 * @param member
+	 */
 
 	public void setType(MembershipType member) {
 		this.member = member;
