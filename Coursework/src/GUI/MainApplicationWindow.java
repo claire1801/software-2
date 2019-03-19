@@ -58,28 +58,13 @@ public class MainApplicationWindow extends JFrame implements Observer {
 		
 		String queueDetailsMessage = Queue.getInstance().getQueueDetails();		
 		queueDetails.setText(queueDetailsMessage);
+		queueDetails.setCaretPosition(0);
 		
 		String staffOnDutyDetails = StaffList.getInstance().onDutyList();
 		staffOnDuty.setText(staffOnDutyDetails);
 		
 	}
 
-
-	/**
-	 *    Gui visual testing method
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					MainApplicationWindow window = new MainApplicationWindow();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 	
 	public static void addBox(Staff newStaff) {		
 
@@ -87,14 +72,6 @@ public class MainApplicationWindow extends JFrame implements Observer {
 		String message = "Staff ID: " + newStaff.getStaffID() + " Name: " + newStaff.getStaffFirstName() +" " + newStaff.getStaffLastName() ;
 	    serverBox.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 	
-//		try 
-//		{
-			//message +=  "new";
-//		} 
-//		catch (NoStaffAvailableException excep) 
-//		{
-//			message += excep.getMessage();
-//		}
 		serverActivityPanel.add(serverBox);
 		serverBox.setText(message);
 		Queue queue = Queue.getInstance();
@@ -114,7 +91,7 @@ public class MainApplicationWindow extends JFrame implements Observer {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		StaffList.getInstance().registerObserver(this);
-//		Queue.getInstance().registerObserver(this);
+		Queue.getInstance().registerObserver(this);
 		
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
@@ -354,13 +331,26 @@ public class MainApplicationWindow extends JFrame implements Observer {
 		/**
 		 *  server activity panel, where servers are added to
 		 */
-		//JPanel serverActivityPanel = new JPanel();
 		serverActivityPanel = new JPanel();
 		GridBagLayout serverActivityDesk = new GridBagLayout();
 		serverActivityPanel.setLayout(serverActivityDesk);
 		JScrollPane serverActivityScrollPane = new JScrollPane(serverActivityPanel);
 		serverActivityScrollPane.setBounds(6, 429, 1285, 225);
 		getContentPane().add(serverActivityScrollPane);
+		
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////				
+		
+		/**
+		*  button to speed up order processing
+		*/
+		JButton btnOpenShop = new JButton("Open shop");
+		btnOpenShop.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+		Main.queue.setShopOpen(true);
+		}
+		});
+		btnOpenShop.setBounds(1303, 350, 117, 29);
+		getContentPane().add(btnOpenShop);
 		
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////				
 		
