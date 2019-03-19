@@ -103,21 +103,6 @@ public class Main {
 		JFrame frame = new MainApplicationWindow();
 		frame.setVisible(true);
   	
-	  
-	  // old initialisation
-
-//	      JFrame frame = new MainGUI();
-//  	  JFrame frame2 = new Stage2GUI();
-//  	 
-//  	  frame.pack();
-//  	  frame2.pack();
-//  	 
-//  	  frame.setVisible(true);
-//  	  frame2.setVisible(true);
-//  	  
-//  	 
-//  	  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//  	  frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   	 }
 	
 	
