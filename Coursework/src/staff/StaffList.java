@@ -1,19 +1,22 @@
 package staff;
 
 import java.util.Hashtable;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import exceptions.InvalidStaffIDException;
 import exceptions.NoStaffAvailableException;
+import main.*;
 
 
 /**
  * 
- * @author frsrg
+ * 
  *
  */
 
-public class StaffList {
+public class StaffList implements Subject {
 
 	private static StaffList instance;
 	
@@ -47,12 +50,12 @@ public class StaffList {
 		}
 		
 	}
+	
 	/**
 	 * get staff member
 	 * @param ID
 	 * @return staff if exists or null if not
 	 */
-	
 	public Staff getStaff(int ID) {
 		if(this.staffExists(ID)) {
 			return staffList.get(ID);
@@ -68,19 +71,19 @@ public class StaffList {
 		
 	}
 	
-	public Staff getRandomStaff() {
-		//System.out.println("i am here2");
-		double randomNumber = Math.random();
-		int ID = (int) (randomNumber * this.size() + 1);
-		//System.out.println(this.size());
-		while(this.staffExists(ID) == false) {
-			//System.out.println("id no" + ID);
-			randomNumber = Math.random();
-			ID = (int) (randomNumber * this.staffList.size() + 1);
-		}
-		return staffList.get(ID);
-		
-	}
+//	public Staff getRandomStaff() {
+//		//System.out.println("i am here2");
+//		double randomNumber = Math.random();
+//		int ID = (int) (randomNumber * this.size() + 1);
+//		//System.out.println(this.size());
+//		while(this.staffExists(ID) == false) {
+//			//System.out.println("id no" + ID);
+//			randomNumber = Math.random();
+//			ID = (int) (randomNumber * this.staffList.size() + 1);
+//		}
+//		return staffList.get(ID);
+//		
+//	}
 	
 	
 	public boolean staffExists(int ID) {
@@ -94,9 +97,55 @@ public class StaffList {
 			Staff staff = staffList.get(key);
 			if(staff.isStaffAtWork() == true && staff.isStaffServing() == false) {
 				return staff;
-			} else throw new NoStaffAvailableException("There are no staff working that are free to serve");
+			} 
 		}
-		return null;
+		throw new NoStaffAvailableException("There are no staff working that are free to serve");
+		
+	}
+	
+	public String onDutyList() {
+		String message = "Staff on duty...\n";
+		Set<Integer> keys = staffList.keySet();
+		for(int key : keys) {
+			Staff staff = staffList.get(key);
+			if (staff.isStaffAtWork()) 
+				message += String.format("Staff No. %d, %s %s staff. Currently ",
+						staff.getStaffID(), staff.getStaffFirstName(), staff.getStaffLastName());
+			if (staff.isStaffServing()) {
+				String items = staff.getCurrentBasket().getItemsInBasketString();
+				int cutID = staff.getCurrentBasket().getCurrentCustomerID();
+				message += "serving cusotmer: " + cutID + " (" + items + ") .\n"; 
+			} else {message += "free.\n";}
+		}
+		return message;
+	}
+
+	
+	/**
+	 * List to hold any observers
+	 */
+	private List<Observer> registeredObservers = new LinkedList<Observer>();
+
+	/**
+	 * Register an observer with this subject
+	 */
+	public void registerObserver(Observer obs) {
+		registeredObservers.add(obs);
+	}
+
+	/**
+	 * De-register an observer with this subject
+	 */
+	public void removeObserver(Observer obs) {
+		registeredObservers.remove(obs);
+	}
+
+	/**
+	 * Inform all registered observers that there's been an update
+	 */
+	public void notifyObservers() {
+		for (Observer obs : registeredObservers)
+			obs.update();
 	}
 	
 	

@@ -35,8 +35,8 @@ public class Basket {
 	private double unDiscountedBill = 0;
 	private double discount = 0;
 	private double finalBill = 0;
-	private int currentStaffID; // should this be added to the constructor, i.e. will we know staff/customer before basket screen
-	private int currentCustomerID; // will we need more than one basket ever? probably not
+	private int currentStaffID;
+	private int currentCustomerID; 
 	private static final double MEAL_DEAL_DISCOUNT = 1.5;
 	private boolean online = false;
 	
@@ -55,7 +55,7 @@ public class Basket {
 	 * add menu item to the basket
 	 * @param item
 	 */
-	public void addItemToUnconfirmedOrder(MenuItems item) {   // setUnconfirmedOrder in class diagram
+	public void addItemToUnconfirmedOrder(MenuItems item) { 
 		unconfirmedOrder.add(item);
 		unDiscountedBill += item.getCost();
 	}
@@ -96,69 +96,19 @@ public class Basket {
 	public Iterable<MenuItems> getItemsInBasket(){
 		return unconfirmedOrder;
 	}
+	/**
+	 * get all items in basket as string
+	 * @return
+	 */
+	public String getItemsInBasketString(){
+		String items = "";
+		for(MenuItems item: unconfirmedOrder) {
+			items += item.getName() + ", ";
+		}
+		return items;
+	}
 		
-// 	
-// 	/**
-// 	 * 
-// 	 * Discounts for meals deals, only full meal deals (i.e. meal drink and snack) count
-// 	 */
-//	private void getMealDealDiscount() {
-//		int countOfFoodItems = 0, countOfSoftDrinks = 0, countOfSnacks = 0; // counters for the meal deal discount
-//
-//		for (MenuItems item : unconfirmedOrder) {
-//			if(item.getID().substring(0, 5).equals("MEALS")) {
-//				countOfFoodItems++;
-//			}
-//			else if(item.getID().substring(0, 5).equals("DRINK")) {
-//				countOfSoftDrinks++;
-//			}
-//			else if(item.getID().substring(0, 5).equals("SNACK")) {
-//				countOfSnacks++;
-//			}
-//		}
-//		int numberOfFullMealDeals = Math.min(countOfFoodItems, Math.min(countOfSoftDrinks, countOfSnacks));
-//		double mealDealDiscount = numberOfFullMealDeals*MEAL_DEAL_DISCOUNT;
-//		discount += mealDealDiscount;
-//	}
-//	
-//	
-//	/**
-//	 * 
-//	 * Coffee is taken off the bill if it is the customers 5th coffee
-//	 */
-//	private void getCoffeeDiscount() {
-//		double coffeeLoyaltyDiscount = 0;
-//		Customer customer = Main.customerList.getCustomer(currentCustomerID);
-//		int previousCoffees = customer.getNumberPreviousCoffees();
-//		for(MenuItems item : unconfirmedOrder) 
-//		{
-//			previousCoffees = customer.getNumberPreviousCoffees();
-//			if(item.getID().substring(0, 5).equals("COFEE") ) {
-//				if( previousCoffees == 4) 
-//				{
-//					coffeeLoyaltyDiscount += item.getCost();
-//					customer.setNumberPreviousCoffees(0);
-//				} 
-//				else 
-//				{
-//					customer.setNumberPreviousCoffees(previousCoffees + 1);
-//				}
-//			}
-//			
-//		}
-//		discount += coffeeLoyaltyDiscount;
-//	}
-//	
-//	/**
-//	 * 
-//	 * gets value of discount returned after member type reduction
-//	 */
-//	private void getMemberDiscount() {
-//		double tempDiscountedBill = unDiscountedBill - discount;
-//		Customer customer = Main.customerList.getCustomer(currentCustomerID);	
-//		double memberDiscount = customer.getType().getDiscount() * tempDiscountedBill;
-//		discount += memberDiscount;
-//	}
+
 	
 	/**
 	 * works out the total discount
@@ -172,9 +122,7 @@ public class Basket {
 		Discount membershipDiscount = new MembershipDiscount(this.unconfirmedOrder, this.currentCustomerID, tempBill);
 		tempBill -= membershipDiscount.getDiscount();
 		discount = unDiscountedBill - tempBill;
-//		this.getMealDealDiscount();
-//		this.getCoffeeDiscount();
-//		this.getMemberDiscount();
+
 		return discount;
 	}
 	
@@ -203,23 +151,40 @@ public class Basket {
 		for (MenuItems item: unconfirmedOrder) {
 			
 			Order newOrder = new Order(id, currentCustomerID, time, item.getID(), item.getCost(), discount/numberOfItems,this.currentStaffID);
-			// note at some point we should probably include staff id in with orders too
 			orderList.addOrder(newOrder);  
 		}
 		this.clearBasket();
 	}
+	/**
+	 * get the customer ID for this basket
+	 * @return int ID
+	 */
 	public int getCurrentCustomerID() {
 		return this.currentCustomerID;
 	}
-	
+	/**
+	 * is the basket online (true/false)
+	 * @return boolean
+	 */
 	public boolean getOnline() 
 	{
 		return this.online;
 	}
-	
+	/**
+	 * set online 
+	 * @param online
+	 */
 	public void setOnline(boolean online)  
 	{
 		this.online = online;
+	}
+	/**
+	 * number of items in basket
+	 * @return
+	 */
+	
+	public int numberOfItems() {
+		return unconfirmedOrder.size();
 	}
 
 	

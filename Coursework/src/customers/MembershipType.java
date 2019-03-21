@@ -8,6 +8,10 @@ public enum MembershipType {
 	private MembershipType(double discountPercent) {
 			this.discountPercent = discountPercent;
 	}
+	/**
+	 * get the percent discount for membership type
+	 * @return double 
+	 */
 
 	public double getDiscount() {return discountPercent;}
 

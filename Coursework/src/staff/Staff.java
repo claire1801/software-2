@@ -23,18 +23,18 @@ public class Staff implements Runnable {
 	private String lastName;
 
 	private Queue queue;
+	private Log log;
 	private Basket unprocessedOrder;
+	private int CurrentCustomerID = 0;
+	//private int CurrentOrderID = 0;
 	
 	
 	// staff have to 'log in' to be on duty and serving
+	
 	private boolean atWork = true; // set to True until a 'home' screen where the on duty staff can be set
 	private boolean serving = false;
 	
-	
 
-	//private static final int orderTime = 5000; //milliseconds
-
-	// could possibly add wage, no. of sales etc.
 	
 	
 	public Staff(int StaffID, String firstname, String lastname) {
@@ -43,14 +43,19 @@ public class Staff implements Runnable {
 		this.lastName = lastname;	
 		
 		queue = Queue.getInstance();
+		log = Log.getInstance();
 	}
 	
 	public void run() {
-		
-		while(!queue.queueEmpty()) {
+		 System.out.println ("Thread " + Thread.currentThread().getId() + " is running server id: " + this.StaffID);
+		while(!queue.queueEmpty() && this.serving == true) {
 			try {
-				 System.out.println ("Thread " + Thread.currentThread().getId() + " is running");
+				
 				processOrder();
+				unprocessedOrder.setCurrentStaffID(StaffID);
+				
+				//this.CurrentOrderID = unprocessedOrder.get
+				unprocessedOrder.getTotalDiscount();
 				unprocessedOrder.getFinalBill();
 				unprocessedOrder.confirmedAndPaid();
 				
@@ -64,31 +69,30 @@ public class Staff implements Runnable {
 	
 	private void processOrder() throws InterruptedException {
 		unprocessedOrder = queue.getNextInQueue();
-		updateLog();
-
-		System.out.println("online: " + unprocessedOrder.getOnline());
-		Log.writeToFile("Customer ID: " + unprocessedOrder.getCurrentCustomerID() + " is being processed by Staff " + StaffID);
-		Thread.sleep(Main.sched.Speed * 500);
-
-		Log.writeToFile("Customer ID: " + unprocessedOrder.getCurrentCustomerID() + " order is complete");
-		updateLog2();
+		this.CurrentCustomerID = unprocessedOrder.getCurrentCustomerID();
+		//System.out.println("online: " + unprocessedOrder.getOnline());
+		log.writeToFile(updateLog());
+		int speed = Main.sched.speed;
+		Thread.sleep( speed * 200 + (speed * 10 * unprocessedOrder.numberOfItems()));
+		log.writeToFile(updateLog2());
+		StaffList.getInstance().notifyObservers();
+		Queue.getInstance().notifyObservers();
 	}
 	
 	
 	public String updateLog() {
-		System.out.println("Customer ID: " + unprocessedOrder.getCurrentCustomerID() +  " order is being processed by Server " + StaffID +
-				"\n"+ "This order contains " + unprocessedOrder.getItemsInBasket());
+		System.out.println("Customer ID: " + CurrentCustomerID +  " order is being processed by Server: " + StaffID +" ("+ this.firstName +" " +this.lastName + ") This order contains " + unprocessedOrder.getItemsInBasket());
 		String order = new String();
-		order += "Customer ID: " + unprocessedOrder.getCurrentCustomerID() +  " order is being processed\n"; 
-		order += "This order contains items" + unprocessedOrder.getItemsInBasket() + "\n";
+		order += "Customer ID: " + CurrentCustomerID +  " order is being processed by Server: " + StaffID +" ("+ this.firstName +" " +this.lastName + ") \n"; 
+		order += "This order contains items: " + unprocessedOrder.getItemsInBasketString() + "\n";
 		return order;
 	}
 	
 	
 	public String updateLog2() {
-		System.out.println("Customer ID: " + unprocessedOrder.getCurrentCustomerID() +  " has been processed");
+		System.out.println("Customer ID: " + CurrentCustomerID +  " has been processed");
 		String order = new String();
-		order += "orderID: " + "has been processed";
+		order += "The order for Customer: " + CurrentCustomerID + " has been processed by: " + StaffID;
 		return order;
 	}
 	
@@ -144,6 +148,14 @@ public class Staff implements Runnable {
 	 */
 	public boolean isStaffServing() {
 		return this.serving;
+	}
+	/**
+	 * get the basket currently being processed
+	 * @return current basket
+	 */
+	
+	public Basket getCurrentBasket() {
+		return this.unprocessedOrder;
 	}
 
 }

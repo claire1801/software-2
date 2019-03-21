@@ -1,12 +1,16 @@
 package shop;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 import customers.CustomerList;
 import menu.MenuItems;
 import menu.MenuList;
 import main.Log;
+import main.Observer;
+import main.Subject;
 import orders.Order;
 import orders.OrderList;
 /**
@@ -15,10 +19,11 @@ import orders.OrderList;
  * @author samth
  *
  */
-public class Queue {
+public class Queue implements Subject {
 	private static Queue instance;
 	
 	private ArrayList<Basket> queue;
+	private boolean shopOpen = false;
 	/**
 	 * constructor
 	 */
@@ -37,21 +42,39 @@ public class Queue {
 		return instance;
 	}
 	/**
-	 * loads in existing orders into the queue. must be called after orders are imported
+	 * shop open true/false
+	 * @return boolean - true/false
 	 */
 	
+	public synchronized boolean getShopOpen() {
+		return this.shopOpen;
+	}
+	
+	/**
+	 * set the to be open (true) or closed (false)
+	 * @param open - boolean 
+	 */
+	public synchronized void setShopOpen(boolean open) {
+		 this.shopOpen = open;
+	}
+	
+	
+	/**
+	 * loads in existing orders into the queue. must be called after orders are imported
+	 */
 	public void setupQueue() {
 		OrderList ol = OrderList.getInstance();
 		MenuList ml = MenuList.getInstance();
 		Iterable<Order> orderList = ol.getAllOrders();
-		//Queue queue = Queue.getInstance();
+		
 		int prevOrderID = 0;
 		Basket basket = new Basket();
 		for(Order order: orderList) {
 			basket.setCurrentCustomerID(order.getCustomerID());
-			if(order.getOrderID() == prevOrderID) {
+			if(order.getOrderID() == prevOrderID || prevOrderID == 0) {
 				MenuItems item = ml.getItem(order.getItemID());
 				basket.addItemToUnconfirmedOrder(item);
+				prevOrderID = order.getOrderID();
 			}
 			else {
 				this.addToQueue(basket);
@@ -61,8 +84,10 @@ public class Queue {
 				prevOrderID = order.getOrderID();
 			}
 		}
-		//System.out.println(this.numberInQueue());
+	
 	}
+	
+	
 	/**
 	 * add an basket (customer) to the end of the queue. This method is synchronized
 	 * @param newBasket - the basket to add
@@ -73,9 +98,13 @@ public class Queue {
 		}else {
 			this.queue.add(newBasket);
 		}
+		System.out.println(this.numberInQueue());
 
 		
 	}
+	
+	
+	
 	/**
 	 * returns the basket (customer) at the beginning of the queue ( index 0) and removes it from the queue. This method is synchronized
 	 * @return the next basket in the queue
@@ -88,29 +117,49 @@ public class Queue {
 		
 	}
 	
-	public int numberInQueue() {
-		return queue.size();
+	/**
+	 * get the details of all baskets in queue
+	 * @return string - of details
+	 */
+	
+	
+	public synchronized String getQueueDetails() {
+		String output = "Current Queue...\n";
+		for (Basket b:queue) {
+			String orderType = "";
+			if(b.getOnline()) {
+				orderType += "Online";
+			} else { orderType += "In store";}
+			output += String.format("Customer %d with %d items. %s order.\n", b.getCurrentCustomerID(), b.numberOfItems(), orderType);
+		}
+		return output;
 	}
 	
-	public boolean queueEmpty(){
-		if(this.queue.isEmpty()) {
-			return true;		
-		} else {
-		return false;
-		}
+	/**
+	 * Gives the number of baskets in the queue
+	 * @return int - number of baskets in queue
+	 */
+	
+	public synchronized int numberInQueue() {
+		return queue.size();
+	}
+	/**
+	 * is the queue empty
+	 * @return true/false
+	 */
+	public synchronized boolean queueEmpty(){
+
+		return this.queue.isEmpty();
 	}
 	/**
 	 * creates a new random basket and adds it to the queue
 	 */
 	
-	
 	public void addRandomCustomer() {
-	//	System.out.println("hello");
+		Log log = Log.getInstance();
 		Basket basket = new Basket();
 		CustomerList cl = CustomerList.getInstance();
 		MenuList ml = MenuList.getInstance();
-		//Iterable<MenuItems> menuItems = ml.getAllMenuItems();
-	//	System.out.println("hello");
 		double randomNumber = Math.random();
 		int numberOfItems = (int) (randomNumber * 5) + 1;
 		randomNumber = Math.random();
@@ -125,16 +174,41 @@ public class Queue {
 
 		
 		basket.setCurrentCustomerID(customerId);
-	//	System.out.println(numberOfItems);
+	
 		for(int x = 0; x < numberOfItems; x++) {
-	//		System.out.println("hello1");
 			MenuItems item = ml.getRandomItem();
 			basket.addItemToUnconfirmedOrder(item);
 		}
-		Log.writeToFile("Customer " + basket.getCurrentCustomerID() + " was added to the queue");	
-		this.queue.add(basket);
-		System.out.println(this.numberInQueue());
+		log.writeToFile("Customer " + basket.getCurrentCustomerID() + " was added to the queue \n");	
+		this.addToQueue(basket);
 	
+	}
+	
+	/**
+	 * List to hold any observers
+	 */
+	private List<Observer> registeredObservers = new LinkedList<Observer>();
+
+	/**
+	 * Register an observer with this subject
+	 */
+	public void registerObserver(Observer obs) {
+		registeredObservers.add(obs);
+	}
+
+	/**
+	 * De-register an observer with this subject
+	 */
+	public void removeObserver(Observer obs) {
+		registeredObservers.remove(obs);
+	}
+
+	/**
+	 * Inform all registered observers that there's been an update
+	 */
+	public void notifyObservers() {
+		for (Observer obs : registeredObservers)
+			obs.update();
 	}
 	
 

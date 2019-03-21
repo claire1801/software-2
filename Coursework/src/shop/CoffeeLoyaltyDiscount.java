@@ -11,7 +11,9 @@ public class CoffeeLoyaltyDiscount extends Discount {
 	public CoffeeLoyaltyDiscount(ArrayList<MenuItems> unconfirmedOrder, int customerID, double unDiscountedBill) {
 		super(unconfirmedOrder, customerID, unDiscountedBill);
 	}
-
+	/**
+	 * get discount due to coffee
+	 */
 
 	public double getDiscount() {
 		double coffeeLoyaltyDiscount = 0;

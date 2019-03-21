@@ -8,8 +8,10 @@ import java.io.PrintWriter;
 
 import javax.swing.JFrame;
 
-import GUI.MainGUI;
-import GUI.Stage2GUI;
+//import GUI.ForDeletion2;
+
+import GUI.MainApplicationWindow;
+
 import customers.CustomerList;
 import exceptions.InvalidCustomerIDException;
 import exceptions.InvalidItemIdentifierException;
@@ -30,7 +32,7 @@ import java.text.ParseException;
  */
 public class Main {
 	
-	public static Basket basket = new Basket();
+	//public static Basket basket = new Basket();
 	public static Queue queue = Queue.getInstance();
 	public static Scheduler sched;
 	
@@ -50,8 +52,10 @@ public class Main {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+
+		setupQueue(30);
 		
-		setupQueue(20);
+		
 		
 		  javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			  
@@ -62,17 +66,24 @@ public class Main {
 			  }
 			   
 			    });
+		  
+		  
+		  
+		  
 		  sched = new Scheduler();
 		  Thread TimeThread = new Thread(sched);
 		  TimeThread.start();
 		  
 
 	}
+	
+	
+	
+	
 	/**
 	 * set up queue and add random customers  to queue
 	 * @param newCustomers - number of customers to add
 	 */
-	
 	private static void setupQueue(int newCustomers) {
 		queue.setupQueue();
 		for(int i =0; i < newCustomers; i++) { 
@@ -80,32 +91,27 @@ public class Main {
 		}
 	}
 	
+	
+	
+	
 /**
  * create the GUI interface
  */
 	private static void createAndShowGUI() {
-   	  JFrame frame = new MainGUI();
-		JFrame frame2 = new Stage2GUI();
-  	 
-  	  //Display the window.
-  	 
-  	  frame.pack();
-  	  frame2.pack();
-  	 
-  	  frame.setVisible(true);
-  	  frame2.setVisible(true);
-  	  
-  	 
-  	  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-  	  frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-  	 
-  	 
+	  
+		
+		JFrame frame = new MainApplicationWindow();
+		frame.setVisible(true);
+  	
   	 }
+	
+	
+	
+	
 	
 	/**
 	 * runs shutdown procedure
 	 */
-	
 	public static void progExit() {
 		updateFiles();
 		writeReport("report.txt");
@@ -114,10 +120,12 @@ public class Main {
 	}
 	
 	
-	/**
-	 * update all data files
-	 */
 	
+	
+	
+	/**
+	 * update all data  files (orderlist.txt, menulist.txt, cutomerlist.txt)
+	 */
 	private static void updateFiles() {
 		
 		MenuList menuList = MenuList.getInstance();
@@ -129,10 +137,7 @@ public class Main {
 		
 		String menu = menuList.writeReport();
 		printToFile("MenuItems.txt",menu);
-//		
-//		String menu = staffList.writeReport();    // not needed?
-//		printToFile("StaffList.txt",menu);
-//		
+	
 		String customer = customerList.writeReport();
 		printToFile("customerList.txt",customer);
 

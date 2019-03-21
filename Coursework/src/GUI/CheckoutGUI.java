@@ -15,6 +15,8 @@ import javax.swing.JTextArea;
 
 
 import main.Main;
+import shop.Basket;
+import shop.Queue;
 /**
  * Secondary gui interface for checkout.
  * @author 
@@ -27,21 +29,22 @@ public class CheckoutGUI extends JFrame implements ActionListener{
 	  //GUI components
     JTextArea details;
     
-    JButton BillPaid = new JButton("Pay Bill");
+    JButton BillPaid = new JButton("Add To Queue");
 
   
     double cost;
     double discount;
+    Basket newBasket;
     
-	public CheckoutGUI() {
-		
-		discount = Main.basket.getTotalDiscount();
-		cost = Main.basket.getFinalBill();
+	public CheckoutGUI(Basket newBasket) {
+		this.newBasket = newBasket;
+		discount = newBasket.getTotalDiscount();
+		cost = newBasket.getFinalBill();
 
 		
 		
 	}
-	/*
+	/**
 	 * set up window
 	 */
 	
@@ -88,12 +91,17 @@ public class CheckoutGUI extends JFrame implements ActionListener{
         this.add(southPanel, BorderLayout.CENTER);   	
     }
 	
-	
+	/**
+	 * action listener
+	 */
 	
 	
 	public void actionPerformed(ActionEvent e) { 
     	if (e.getSource() == BillPaid) {
-    		Main.basket.confirmedAndPaid();
+    		Queue queue = Queue.getInstance();
+    		queue.addToQueue(newBasket);
+    		System.out.println("in basket");
+    //		newBasket.confirmedAndPaid();
     		setVisible(false);
     		
     		

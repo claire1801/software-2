@@ -86,6 +86,10 @@ public class CustomerList {
 			return false;
 		}
 	}
+	/**
+	 * get the number of customers
+	 * @return int - number of customers
+	 */
 	public int getSize() {
 		return customerList.size();
 	}
@@ -104,14 +108,6 @@ public class CustomerList {
 			report += customer.getNumberPreviousCoffees()+ "/";
 			report += customer.getType() + "\n";	
 		}
-//		for(Entry<Integer, Customer> customer : customerList.entrySet()){
-//		//report += customer.getValue();
-//		report += ((Customer) customer).getName() + "/";
-//		report += customer.getKey() + "/";
-//		report += ((Customer) customer).getType() + "/";
-//		report += ((Customer) customer).getNumberPreviousCoffees();
-//	
-//		}
 		
 		return report;
 				
