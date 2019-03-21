@@ -59,8 +59,7 @@ public class Staff implements Runnable {
 				
 				processOrder();
 				unprocessedOrder.setCurrentStaffID(StaffID);
-				discount = unprocessedOrder.getTotalDiscount();
-				cost = unprocessedOrder.getFinalBill();
+				
 				unprocessedOrder.confirmedAndPaid();
 				log.writeToFile(updateLog2());
 				
@@ -79,6 +78,8 @@ public class Staff implements Runnable {
 	
 	private void processOrder() throws InterruptedException {
 		unprocessedOrder = queue.getNextInQueue();
+		discount = unprocessedOrder.getTotalDiscount();
+		cost = unprocessedOrder.getFinalBill();
 		this.CurrentCustomerID = unprocessedOrder.getCurrentCustomerID();
 		log.writeToFile(updateLog());
 		int speed = Main.sched.getSpeed();
