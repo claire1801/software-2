@@ -30,8 +30,8 @@ import java.text.ParseException;
  */
 public class Main {
 	
-	//public static Basket basket = new Basket();
-	public static Queue queue = Queue.getInstance();
+	
+	private static Queue queue = Queue.getInstance();
 	public static Scheduler sched;
 	
 

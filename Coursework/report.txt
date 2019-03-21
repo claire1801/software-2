@@ -1,6 +1,6 @@
 Summary of Cafe
-In total there have been 789 orders made.
-This gives a total income of 3116.5 (Ã‚Â£)
+In total there have been 3562 orders made.
+This gives a total income of £14047.0 
 
 The following is a full list of all the items in the menu:
                Large Americano ID: COFEE001 Cost: £3.00 - Espresso shots topped with hot water to produce a light layer of crema.

@@ -81,7 +81,7 @@ public class Staff implements Runnable {
 		unprocessedOrder = queue.getNextInQueue();
 		this.CurrentCustomerID = unprocessedOrder.getCurrentCustomerID();
 		log.writeToFile(updateLog());
-		int speed = Main.sched.speed;
+		int speed = Main.sched.getSpeed();
 		Thread.sleep( speed * 200 + (speed * 10 * unprocessedOrder.numberOfItems()));
 		StaffList.getInstance().notifyObservers();
 		Queue.getInstance().notifyObservers();

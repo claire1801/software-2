@@ -86,7 +86,7 @@ public class MainApplicationWindow extends JFrame implements Observer {
 	 */
 	public MainApplicationWindow() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		setBounds(0, 0, screenSize.width, screenSize.height-200);
+		setBounds(0, 0, screenSize.width, screenSize.height);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		StaffList.getInstance().registerObserver(this);
@@ -342,10 +342,11 @@ public class MainApplicationWindow extends JFrame implements Observer {
 		/**
 		*  button to speed up order processing
 		*/
+		Queue queue1 = Queue.getInstance();
 		JButton btnOpenShop = new JButton("Open shop");
 		btnOpenShop.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-		Main.queue.setShopOpen(true);
+		queue1.setShopOpen(true);
 		}
 		});
 		btnOpenShop.setBounds(1303, 120, 117, 29);

@@ -18,8 +18,7 @@ public class Scheduler implements Runnable {
 	/**
 	 * speed variable controls the speed note: speed 1 is fastest 10 slowest
 	 */
-	public int speed = 5;
-	public boolean isOpen = false;
+	private int speed = 5;
 	ArrayList<Thread> threadList;
 	ArrayList<Staff> staff;
 	
@@ -137,6 +136,8 @@ public class Scheduler implements Runnable {
 		
 		StaffList.getInstance().notifyObservers();
 		Queue.getInstance().notifyObservers();
+		
+		Main.progExit();
 
 		
 	}
