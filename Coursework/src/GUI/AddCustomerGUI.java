@@ -48,7 +48,7 @@ public class AddCustomerGUI extends JFrame implements ActionListener{
 	public void setUpGUI() {
 		
 		//set up window title
-        this.setTitle("Find Competitor");
+        this.setTitle("Find Customer");
         //disable standard close button
 		this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
 		//call panels here
