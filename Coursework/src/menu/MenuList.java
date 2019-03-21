@@ -8,7 +8,7 @@ public class MenuList {
 	 * Variable for MenuList class
 	 * menuList : List of menu items with a string as the key and a menu item object for the value
 	 */
-	private static TreeMap<String, MenuItems> menuList; 
+	private  TreeMap<String, MenuItems> menuList; 
 
 	private static MenuList menulist;
 	
@@ -120,6 +120,18 @@ public class MenuList {
 		}
 		return null;
 		
+	}
+	/**
+	 * return a list of all items in menu
+	 * @return string of items (formated into list)
+	 */
+	public String getAllMenuItemsString() {
+		Iterable<MenuItems> list = this.getAllMenuItems();
+		String details = "";
+		for(MenuItems item : list) {
+			details += String.format("%30s ID: %s Cost: £%.2f - %s\n",item.getName(),item.getID(),item.getCost(), item.getDescription());
+		}
+		return details;
 	}
 	
 }

@@ -2,7 +2,6 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -235,7 +234,7 @@ public class MainApplicationWindow extends JFrame implements Observer {
 	            Iterable<MenuItems> basketList = newBasket.getItemsInBasket();
 	            String output = "";
 	            for(MenuItems item : basketList) {
-	            	output += String.format("%s\n", item.getID());
+	            	output += String.format("%s\n", item.getName());
 	            }
 	            details.setText(output);
 			}
@@ -257,7 +256,7 @@ public class MainApplicationWindow extends JFrame implements Observer {
 	        		details.setText("");
 	         		CheckoutGUI checkout = new CheckoutGUI(newBasket);
 	        		checkout.setUpGUI(); 
-	        		//newBasket = new Basket();
+	        		newBasket = new Basket();
 	        	}
 			}
 		});
@@ -294,7 +293,7 @@ public class MainApplicationWindow extends JFrame implements Observer {
 		staffOnDuty.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 		staffOnDuty.setText(StaffList.getInstance().onDutyList());
 		JScrollPane staffOnDutyScroll = new JScrollPane(staffOnDuty);
-		staffOnDutyScroll.setBounds(633, 168, 647, 249);
+		staffOnDutyScroll.setBounds(633, 168, 800, 249);
 		getContentPane().add(staffOnDutyScroll);
 		
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
@@ -349,7 +348,7 @@ public class MainApplicationWindow extends JFrame implements Observer {
 		Main.queue.setShopOpen(true);
 		}
 		});
-		btnOpenShop.setBounds(1303, 350, 117, 29);
+		btnOpenShop.setBounds(1303, 120, 117, 29);
 		getContentPane().add(btnOpenShop);
 		
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////				
@@ -454,10 +453,11 @@ public class MainApplicationWindow extends JFrame implements Observer {
 		JButton btnRemoveServer = new JButton("Remove server");
 		btnRemoveServer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.sched.removeServerStaff();
+				if(Main.sched.removeServerStaff()==true) {
 				int size = serverActivityPanel.getComponentCount();
 				serverActivityPanel.remove(size-1);
 				serverActivityPanel.validate();
+				}
 				// could remove boxes too (would maybe need to keep a running list of boxes added?
 			}
 		});

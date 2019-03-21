@@ -2,8 +2,6 @@ package orders;
 /**
  * This is the OrderList class
  * 
- *  
- * @author Jamie Morse (jtm1)
  *
  */
 import java.util.ArrayList;

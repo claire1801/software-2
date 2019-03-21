@@ -12,7 +12,7 @@ import main.*;
 
 /**
  * 
- * 
+ * contains list of staff
  *
  */
 
@@ -22,25 +22,36 @@ public class StaffList implements Subject {
 	
 	private Hashtable<Integer, Staff> staffList;
 	
-	// for Singleton
+
 	
 	
 	private StaffList() {
 		staffList = new Hashtable<Integer, Staff> ();		
 	}
-	
-	// for Singleton
+	/**
+	 * get instance of StaffList
+	 * @return StaffList instance
+	 */
+
 	public static StaffList getInstance() {
 		if (instance == null) 
 			instance = new StaffList();
 		return instance;
 	}
+	/**
+	 * add staff to list
+	 * @param staff
+	 */
 	
 	public void addStaffToList(Staff staff) {
 		staffList.put(staff.getStaffID(), staff);
 	}
 
-	
+	/**
+	 * remove staff from list
+	 * @param staffID - staff ID 
+	 * @throws InvalidStaffIDException
+	 */
 	
 	public void removeStaffFromList(int staffID) throws InvalidStaffIDException {
 		if(staffList.containsKey(staffID)) {
@@ -64,33 +75,31 @@ public class StaffList implements Subject {
 		}
 		
 	}
-	
+	/**
+	 * get number of staff in list
+	 * @return int of staff
+	 */
 	public int size() {
 		return this.staffList.size();
 		
 		
 	}
 	
-//	public Staff getRandomStaff() {
-//		//System.out.println("i am here2");
-//		double randomNumber = Math.random();
-//		int ID = (int) (randomNumber * this.size() + 1);
-//		//System.out.println(this.size());
-//		while(this.staffExists(ID) == false) {
-//			//System.out.println("id no" + ID);
-//			randomNumber = Math.random();
-//			ID = (int) (randomNumber * this.staffList.size() + 1);
-//		}
-//		return staffList.get(ID);
-//		
-//	}
-	
+	/**
+	 * does a staff with ID exist
+	 * @param ID - staff looking for
+	 * @return true/false
+	 */
 	
 	public boolean staffExists(int ID) {
 		return staffList.containsKey(ID);
 	}
 	
-	
+	/**
+	 * get the next available sever
+	 * @return next Staff
+	 * @throws NoStaffAvailableException
+	 */
 	public Staff getNextAvailableServer() throws NoStaffAvailableException {
 		Set<Integer> keys = staffList.keySet();
 		for(int key : keys) {
@@ -102,7 +111,10 @@ public class StaffList implements Subject {
 		throw new NoStaffAvailableException("There are no staff working that are free to serve");
 		
 	}
-	
+	/**
+	 * staff is on duty 
+	 * @return true / false
+	 */
 	public String onDutyList() {
 		String message = "Staff on duty...\n";
 		Set<Integer> keys = staffList.keySet();
@@ -112,9 +124,22 @@ public class StaffList implements Subject {
 				message += String.format("Staff No. %d, %s %s staff. Currently ",
 						staff.getStaffID(), staff.getStaffFirstName(), staff.getStaffLastName());
 			if (staff.isStaffServing()) {
-				String items = staff.getCurrentBasket().getItemsInBasketString();
-				int cutID = staff.getCurrentBasket().getCurrentCustomerID();
-				message += "serving cusotmer: " + cutID + " (" + items + ") .\n"; 
+				try {
+					if(staff.getCurrentBasket().getCurrentCustomerID() == 0) {
+						message += "waiting.\n";
+					}else {
+						String items = "";
+						
+							items = staff.getCurrentBasket().getItemsInBasketString();
+						
+						
+						int cutID = staff.getCurrentBasket().getCurrentCustomerID();
+						message += "serving customer: " + cutID + " (" + items + ") .\n"; 
+					}
+				}catch(NullPointerException e1) {
+					//System.out.println("1");
+				}
+				
 			} else {message += "free.\n";}
 		}
 		return message;
@@ -148,10 +173,6 @@ public class StaffList implements Subject {
 			obs.update();
 	}
 	
-	
-//	public void removeStaffFromList(int id) {
-//		staffList.remove(id);
-//	}
 	
 }
 

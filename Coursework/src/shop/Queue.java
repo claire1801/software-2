@@ -3,7 +3,6 @@ package shop;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 
 import customers.CustomerList;
 import menu.MenuItems;
@@ -16,7 +15,6 @@ import orders.OrderList;
 /**
  * queue class - uses singleton design pattern
  * this class may be accessed by multiple threads at one time hence some methods are synchronized.
- * @author samth
  *
  */
 public class Queue implements Subject {
@@ -98,7 +96,8 @@ public class Queue implements Subject {
 		}else {
 			this.queue.add(newBasket);
 		}
-		System.out.println(this.numberInQueue());
+		Queue.getInstance().notifyObservers();
+		//System.out.println(this.numberInQueue());
 
 		
 	}
@@ -124,7 +123,7 @@ public class Queue implements Subject {
 	
 	
 	public synchronized String getQueueDetails() {
-		String output = "Current Queue...\n";
+		String output = "Current Queue... (length of queue: " + this.numberInQueue() + ")\n";
 		for (Basket b:queue) {
 			String orderType = "";
 			if(b.getOnline()) {
