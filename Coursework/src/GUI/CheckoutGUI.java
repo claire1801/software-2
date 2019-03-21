@@ -14,12 +14,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 
-import main.Main;
 import shop.Basket;
 import shop.Queue;
 /**
  * Secondary gui interface for checkout.
- * @author 
  *
  */
 public class CheckoutGUI extends JFrame implements ActionListener{

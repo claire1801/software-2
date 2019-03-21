@@ -1,7 +1,6 @@
 package main;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 import GUI.MainApplicationWindow;
 import exceptions.NoStaffAvailableException;
@@ -11,7 +10,6 @@ import staff.StaffList;
 
 /**
  * manages time keeping and staff threads - runs in its own thread
- * @author Sam
  *
  */
 public class Scheduler implements Runnable {
@@ -62,12 +60,11 @@ public class Scheduler implements Runnable {
 		if(staffCounter < sl.size() ) {
 			staffCounter++;
 			Staff newServerStaff = sl.getNextAvailableServer();
-			//staff.add(newServerStaff);
 			newServerStaff.isServing(true);
 			Thread servingStaffThread = new Thread(newServerStaff);
 			servingStaffThread.start();
 			this.addStaffThread(newServerStaff, servingStaffThread);
-			System.out.println("new thread with server: " + newServerStaff.getStaffID());
+			//System.out.println("new thread with server: " + newServerStaff.getStaffID());
 			return newServerStaff;
 		}
 		return null;
@@ -78,7 +75,7 @@ public class Scheduler implements Runnable {
 	 * remove staff from duty
 	 * @throws NullPointerException
 	 */
-	public synchronized  void removeServerStaff() throws NullPointerException {
+	public synchronized  boolean removeServerStaff() throws NullPointerException {
 		// could possibly add in functionality so that order being processed is not lost
 		
 		//remove last server to be added
@@ -88,8 +85,10 @@ public class Scheduler implements Runnable {
 			//System.out.println("heelo");
 			//this.staff.remove(staff.size()-1);
 			staffCounter--;
+			StaffList.getInstance().notifyObservers();
+			return true;
 		}
-		
+		return false;
 	}
 	
 	
@@ -106,10 +105,9 @@ public class Scheduler implements Runnable {
 			if(queue.getShopOpen() == false){
 				continue;
 			}
-			//if(staffCounter < 4) { //staffcounter is initialised to 0 this is bad
+			
 		
-			if(queue.numberInQueue()/(staffCounter + 1) >= 10 && staffCounter < 12) { //staffcounter is initialised to 0 this is bad
-				//this.addStaff();
+			if(queue.numberInQueue()/(staffCounter + 1) >= 10 && staffCounter < 12) { 
 				try {
 					Staff newstaff = this.addServerStaff();
 					MainApplicationWindow.addBox(newstaff);
@@ -132,6 +130,15 @@ public class Scheduler implements Runnable {
 			}
 			
 		}
+
+		while(staff.size() > 0) {
+			this.removeServerStaff();
+		}
+		
+		StaffList.getInstance().notifyObservers();
+		Queue.getInstance().notifyObservers();
+
+		
 	}
 	/**
 	 * get the current speed - 10 is slowest 1 fastest
@@ -143,7 +150,7 @@ public class Scheduler implements Runnable {
 	}
 	/**
 	 * increase the speed
-	 * @return int - new speed note: returns true speed
+	 * @return int - new speed note: returns inverse of speed i.e 1 slowest 10 fastest
 	 */
 
 	public synchronized  int incSpeed() {
@@ -154,7 +161,7 @@ public class Scheduler implements Runnable {
 	}
 	/**
 	 * Decrease the speed
-	 * @return int - new speed note: returns true speed
+	 * @return int - new speed note: returns inverse of speed i.e 1 slowest 10 fastest
 	 */
 	public synchronized  int decSpeed() {
 		if(speed < 10) {

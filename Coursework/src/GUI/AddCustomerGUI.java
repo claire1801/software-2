@@ -17,11 +17,8 @@ import customers.Customer;
 import customers.CustomerList;
 import customers.MembershipType;
 import exceptions.InvalidCustomerIDException;
-import main.Main;
 /**
  * Secondary gui interface for Adding new customer.
- * @author 
- *
  */
 public class AddCustomerGUI extends JFrame implements ActionListener{
 	

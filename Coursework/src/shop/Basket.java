@@ -1,10 +1,6 @@
 package shop;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-
-
-import customers.*;
-import main.Main;
 import menu.*;
 import orders.*;
 
@@ -12,7 +8,6 @@ import orders.*;
  * This is the basket class - not case!
  * 
  * It will store orders before they have been committed to the OrderList
- * @author frsrg
  *
  */
 
@@ -37,7 +32,7 @@ public class Basket {
 	private double finalBill = 0;
 	private int currentStaffID;
 	private int currentCustomerID; 
-	private static final double MEAL_DEAL_DISCOUNT = 1.5;
+//	private static final double MEAL_DEAL_DISCOUNT = 1.5;
 	private boolean online = false;
 	
 

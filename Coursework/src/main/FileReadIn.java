@@ -20,13 +20,10 @@ import menu.MenuList;
 import menu.Snacks;
 import orders.Order;
 import orders.OrderList;
-import shop.Queue;
 import staff.*;
 
 /**
  * reads in files (orderlist, customerlist, stafflist , menulist) should be called from Main
- * @author samth
- *
  */
 public class FileReadIn {
 	

@@ -7,8 +7,12 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Calendar;
 
-import shop.Queue;
 
+/**
+ * implements a log of order processing 
+ * 
+ *
+ */
 
 public class Log {
 	

@@ -26,9 +26,7 @@ import java.text.ParseException;
 
 
 /**
- * Reads and out files and reports
- * @author samth
- *
+ * main class - sets up files and queue runs gui
  */
 public class Main {
 	
@@ -59,10 +57,8 @@ public class Main {
 		
 		  javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			  
-			  public void run() {
-			   
+			  public void run() { 
 			      createAndShowGUI(); 
-			   
 			  }
 			   
 			    });
@@ -81,8 +77,8 @@ public class Main {
 	
 	
 	/**
-	 * set up queue and add random customers  to queue
-	 * @param newCustomers - number of customers to add
+	 * set up queue and add random customer orders to queue
+	 * @param newCustomers - number of random customers to add
 	 */
 	private static void setupQueue(int newCustomers) {
 		queue.setupQueue();
@@ -173,14 +169,15 @@ public class Main {
 	private static  void writeReport(String filename) {
 		
 		OrderList orderList = OrderList.getInstance();
+		MenuList menuList = MenuList.getInstance();
 		
 		String details = "Summary of Cafe\n";
 		int sales = orderList.totalSales();
 		double income = orderList.totalIncome();
 		details += "In total there have been " + sales + " orders made.\n";
-		details += "This gives a total income of " + income + " (Â£)\n\n";
-		details += "The following is a full list of all items Ordered:\n";
-		details += orderList.writeReport();
+		details += "This gives a total income of �" + income + " \n\n";
+		details += "The following is a full list of all the items in the menu:\n";
+		details += menuList.getAllMenuItemsString();
 		
 		printToFile(filename, details);
 		

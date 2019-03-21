@@ -1,9 +1,6 @@
 package customers;
 import java.util.Hashtable;
 
-import menu.MenuList;
-
-
 public class CustomerList {
 	
 	/**
